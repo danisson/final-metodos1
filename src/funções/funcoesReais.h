@@ -1,9 +1,13 @@
 #ifndef REALFUNCTIONS_H
 #define REALFUNCTIONS_H
 #include <vector>
+#include <memory>
 #include <tuple>
 #include <initializer_list>
 #include <ostream>
+
+#define makeFun(A) std::shared_ptr<tnw::FuncaoReal>(new A)
+#define makeFun2(A) std::shared_ptr<tnw::FuncaoReal>(A)
 
 namespace tnw
 {
@@ -14,7 +18,7 @@ namespace tnw
 		virtual double evalDerivada(double x) const = 0;
 		virtual ~FuncaoReal(){};
 	};
-
+	typedef std::shared_ptr<FuncaoReal> FuncaoRealP;
 
 	class FuncaoConstante : public FuncaoReal
 	{
@@ -31,16 +35,15 @@ namespace tnw
 	{
 	private:
 		char op;
-		FuncaoReal* e;
-		FuncaoReal* d;
+		FuncaoRealP e;
+		FuncaoRealP d;
 	public:
 		// Métodos
 		double eval(double x) const;
 		double evalDerivada(double x) const;
-		FuncaoReal* copy();
 
 		// Construtor
-		FuncoesReais(char op, FuncaoReal* f, FuncaoReal* g);
+		FuncoesReais(char op,const FuncaoRealP& f,const  FuncaoRealP& g);
 
 		// Operadores Sobrecarregados
 
@@ -48,11 +51,11 @@ namespace tnw
 		~FuncoesReais();
 	};
 	namespace op {
-		FuncaoReal*  add(FuncaoReal* f, FuncaoReal* g);
-		FuncaoReal*  sub(FuncaoReal* f, FuncaoReal* g);
-		FuncaoReal* mult(FuncaoReal* f, FuncaoReal* g);
-		FuncaoReal*  add(FuncaoReal* f, double v);
-		FuncaoReal* mult(FuncaoReal* f, double v);
+		FuncaoRealP  add(const FuncaoRealP& f, const FuncaoRealP& g);
+		FuncaoRealP  sub(const FuncaoRealP& f, const FuncaoRealP& g);
+		FuncaoRealP mult(const FuncaoRealP& f, const FuncaoRealP& g);
+		FuncaoRealP  add(const FuncaoRealP& f, double v);
+		FuncaoRealP mult(const FuncaoRealP& f, double v);
 	}
 
 	class Polinomio :  public FuncaoReal
@@ -93,7 +96,7 @@ namespace tnw
 		// Métodos
 		double eval(double x) const;
 		double evalDerivada(double x) const;
-		FuncaoReal* copy();
+		FuncaoRealP copy();
 
 		// Construtores
 		// Construtor principal

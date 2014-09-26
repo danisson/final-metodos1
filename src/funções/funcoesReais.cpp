@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace tnw;
 
+//#define makeFun(A) std::shared_ptr<tnw::FuncaoReal>(A)
+
 // ------------------------  Funções Constante  -------------------------- //
 
 FuncaoConstante::FuncaoConstante(double constante) {
@@ -44,7 +46,7 @@ double FuncoesReais::evalDerivada(double x) const{
 }
 // Construtor
 
-FuncoesReais::FuncoesReais(char op, FuncaoReal* f, FuncaoReal* g) {
+FuncoesReais::FuncoesReais(char op,const FuncaoRealP& f,const FuncaoRealP& g) {
 	this->op = op;
 	this->e = f;
 	this->d = g;
@@ -52,24 +54,21 @@ FuncoesReais::FuncoesReais(char op, FuncaoReal* f, FuncaoReal* g) {
 
 
 // Operadores Sobrecarregados
-FuncaoReal* tnw::op::add(FuncaoReal* f, FuncaoReal* g){
-	return new FuncoesReais('+',f,g);
+FuncaoRealP tnw::op::add(const FuncaoRealP& f, const FuncaoRealP& g){
+	return makeFun(FuncoesReais('+',f,g));
 }
-FuncaoReal* tnw::op::sub(FuncaoReal* f, FuncaoReal* g){
-	return new FuncoesReais('-',f,g);
+FuncaoRealP tnw::op::sub(const FuncaoRealP& f, const FuncaoRealP& g){
+	return makeFun(FuncoesReais('-',f,g));
 }
-FuncaoReal* tnw::op::mult(FuncaoReal* f, FuncaoReal* g){
-	return new FuncoesReais('*',f,g);
+FuncaoRealP tnw::op::mult(const FuncaoRealP& f, const FuncaoRealP& g){
+	return makeFun(FuncoesReais('*',f,g));
 }
-FuncaoReal* tnw::op::add(FuncaoReal* f, double v){
-	return new FuncoesReais('+',f,new FuncaoConstante(v));
+FuncaoRealP tnw::op::add(const FuncaoRealP& f, double v){
+	return makeFun(FuncoesReais('+',f,makeFun(FuncaoConstante(v))));
 }
-FuncaoReal* tnw::op::mult(FuncaoReal* f, double v){
-	return new FuncoesReais('*',f,new FuncaoConstante(v));
+FuncaoRealP tnw::op::mult(const FuncaoRealP& f, double v){
+	return makeFun(FuncoesReais('*',f,makeFun(FuncaoConstante(v))));
 }
 // Destrutor
 
-FuncoesReais::~FuncoesReais(){
-	delete e;
-	delete d;
-};
+FuncoesReais::~FuncoesReais(){};
