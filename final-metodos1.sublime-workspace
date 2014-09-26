@@ -1,0 +1,449 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sha",
+				"shared_ptr"
+			],
+			[
+				"inc",
+				"inc	#include \"…\""
+			],
+			[
+				"fun",
+				"funcoesReais"
+			],
+			[
+				"Fun",
+				"FuncaoConstante"
+			],
+			[
+				"get",
+				"getEsquerda"
+			],
+			[
+				"Fn",
+				"FuncoesReais"
+			],
+			[
+				"Func",
+				"FuncoesReais"
+			],
+			[
+				"pri",
+				"private"
+			],
+			[
+				"in",
+				"inc	#include \"…\""
+			],
+			[
+				"g",
+				"grau"
+			],
+			[
+				"FUn",
+				"FuncoesReais"
+			],
+			[
+				"C",
+				"CFLAGS"
+			],
+			[
+				"Funcao",
+				"FuncaoReal"
+			],
+			[
+				"op",
+				"operator"
+			],
+			[
+				"eval",
+				"eval"
+			],
+			[
+				"coe",
+				"coeficiente"
+			],
+			[
+				"for",
+				"for	For Loop"
+			],
+			[
+				"en",
+				"endl"
+			],
+			[
+				"Real",
+				"RealFunction"
+			],
+			[
+				"text",
+				"textoDiagrama"
+			],
+			[
+				"tx",
+				"textoDiagrama"
+			],
+			[
+				"tex",
+				"textoDiagrama"
+			],
+			[
+				"ga",
+				"guardarDiagrama"
+			],
+			[
+				"h",
+				"h3	Tag"
+			],
+			[
+				"font",
+				"font-style"
+			],
+			[
+				"pro",
+				"processUser"
+			],
+			[
+				"desc",
+				"descrição"
+			],
+			[
+				"i",
+				"if	If Condition"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 75.0,
+		"selected_items":
+		[
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"make",
+				"Set Syntax: Makefile"
+			],
+			[
+				"C++",
+				"Set Syntax: C++"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"CSS",
+				"Set Syntax: CSS"
+			],
+			[
+				"paca",
+				"Package Control: Install Package"
+			],
+			[
+				"Set Syntax C",
+				"Set Syntax: C"
+			],
+			[
+				"set Synax: C",
+				"Set Syntax: C"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/media/daniel/Dados/Github/final-metodos1/src",
+		"/media/daniel/Dados/Github/final-metodos1/src/funções",
+		"/media/daniel/Dados/Github/final-metodos1"
+	],
+	"file_history":
+	[
+		"/media/daniel/Dados/Github/final-metodos1/src/funções/funcoesReais.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/src/funções/funcoesReais.h",
+		"/media/daniel/Dados/Github/final-metodos1/src/teste.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/src/funções/polinomios.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/lof",
+		"/media/daniel/Dados/Github/final-metodos1/log",
+		"/media/daniel/Dados/Github/final-metodos1/src/eqSolver.h",
+		"/media/daniel/Dados/Github/final-cg1/src/transformmatrix.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/makefile",
+		"/media/daniel/Dados/Github/final-metodos1/bin/a",
+		"/media/daniel/Dados/Github/final-metodos1/src/funções/exponencial.cpp",
+		"/home/daniel/Documents/HD/Github/final-metodos1/src/makefile",
+		"/media/daniel/Dados/Github/final-metodos1/src/realFunctions.h",
+		"/media/daniel/Dados/Github/final-metodos1/final-metodos1.sublime-project",
+		"/media/daniel/Dados/Github/final-metodos1/src/funcoesReais.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/src/polinomios.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/src/exponencial.cpp",
+		"/media/daniel/Dados/Github/dogsgame/projeto.sublime-project",
+		"/media/daniel/Dados/Github/final-cg1/projeto_sublime.sublime-project",
+		"/media/daniel/Dados/Github/final-metodos1/src/makefile",
+		"/media/daniel/Dados/Github/final-metodos1/src/teste.c",
+		"/media/daniel/Dados/Github/final-metodos1/src/realFunctions.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/src/exponencial",
+		"/media/daniel/Dados/Github/final-metodos1/src/polinomio.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/src/lista.h",
+		"/usr/local/share/man/man7/rgbds.7",
+		"/usr/local/share/man/man1/nosetests.1",
+		"/usr/local/share/man/man1/rgblib.1",
+		"/home/daniel/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/daniel/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/daniel/Documents/Laboratorio/diagrama/criarArquivo.php",
+		"/home/daniel/Documents/Laboratorio/diagrama/index.php",
+		"/home/daniel/Documents/Laboratorio/diagrama/index.js",
+		"/home/daniel/Documents/Laboratorio/diagrama/turing/atob.mt",
+		"/home/daniel/Documents/Laboratorio/diagrama/turing/chapa.tm",
+		"/home/daniel/Documents/Laboratorio/diagrama/echoPasta.php",
+		"/home/daniel/Documents/Laboratorio/diagrama/maquina.php",
+		"/home/daniel/Documents/Laboratorio/diagrama/salvarArquivo.php",
+		"/home/daniel/Documents/Laboratorio/diagrama/turing/teste.mt",
+		"/home/daniel/Documents/Laboratorio/diagrama/echoArquivo.php",
+		"/media/daniel/Dados/Documentos/Gerador de Máquina 1/output.mt",
+		"/home/daniel/Documents/HD/Documentos/Gerador de Máquina 1/instrucoes.txt",
+		"/media/daniel/Dados/Documentos/Gerador de Máquina 1/asd.dt",
+		"/home/daniel/Documents/HD/Documentos/Gerador de Máquina 1/r.mt",
+		"/home/daniel/Documents/HD/Documentos/Gerador de Máquina 1/map.mt",
+		"/home/daniel/Documents/HD/Documentos/Gerador de Máquina 1/mret.mt",
+		"/home/daniel/Documents/HD/Documentos/Gerador de Máquina 1/conf-diagrama-ex2.dt",
+		"/home/daniel/Documents/HD/Documentos/Gerador de Máquina 1/conf-diagrama-ex3.dt",
+		"/home/daniel/Documents/Laboratorio/diagrama/scripts/maquina.php",
+		"/home/daniel/Documents/Laboratorio/diagrama/estilo.css",
+		"/home/daniel/Documents/Laboratorio/diagrama/scripts/echoArquivo.php",
+		"/home/daniel/Documents/Laboratorio/primitive/index.php",
+		"/home/daniel/Documents/Laboratorio/turing/index.php",
+		"/home/daniel/Documents/Laboratorio/diagrama/echoFile.php",
+		"/home/daniel/Documents/HD/Github/final-cg1/Bento/Binário/moc_janelaprincipal.cpp",
+		"/home/daniel/Documents/Laboratorio/estilo.css",
+		"/home/daniel/Documents/Laboratorio/index.php",
+		"/home/daniel/Documents/Laboratorio/primitive/maquina.php",
+		"/etc/apache2/sites-available/000-default.conf",
+		"/etc/apache2/sites-available/default",
+		"/home/daniel/Documents/Laboratorio/diagrama/ex3.dt",
+		"/home/daniel/Documents/Laboratorio/diagrama/ex2.dt",
+		"/home/daniel/Documents/Laboratorio/primitive/nat.prec",
+		"/home/daniel/Documents/Laboratorio/diagrama/conf-diagrama-ex1.dt",
+		"/home/daniel/Documents/Laboratorio/diagrama/ex1.dt",
+		"/media/daniel/Dados/Documentos/Gerador de Máquina 1/Fontes/main.cpp",
+		"/media/daniel/Dados/Documentos/Gerador de Máquina 1/Fontes/utils.cpp",
+		"/media/daniel/Dados/Documentos/Gerador de Máquina 1/instrucoes.txt",
+		"/home/daniel/Documents/Laboratorio/diagrama/output.mt",
+		"/media/daniel/Dados/Github/pokered/wram.asm",
+		"/media/daniel/Dados/Github/pokered/constants/map_constants.asm",
+		"/media/daniel/Dados/Github/pokered/constants/trainer_constants.asm",
+		"/media/daniel/Dados/Github/pokered/constants/tilesets.asm",
+		"/home/daniel/Documents/HD/Github/pokered/maps/pallettown.blk",
+		"/home/daniel/Documents/HD/Github/pokered/home/joypad.asm",
+		"/home/daniel/Documents/HD/Github/pokered/text/maps/pallet_town.tx",
+		"/home/daniel/Documents/HD/Github/pokered/engine/oak_speech2.asm",
+		"/home/daniel/Documents/HD/Github/pokered/README.md",
+		"/home/daniel/Documents/HD/Github/pokered/engine/oak_speech.asm",
+		"/home/daniel/Documents/HD/Github/pokered/text/maps/pewter_city.asm",
+		"/home/daniel/Documents/HD/Github/pokered/text/maps/pallet_town.asm",
+		"/home/daniel/Documents/HD/Github/pokered/constants/trainer_constants.asm",
+		"/home/daniel/Documents/HD/Github/pokered/engine/titlescreen2.asm",
+		"/home/daniel/Documents/HD/Github/pokered/blue.asm",
+		"/media/daniel/Dados/Github/pokemon.sh",
+		"/home/daniel/Documents/HD/Github/pokered/scripts/celadongamecorner.tx",
+		"/home/daniel/Documents/HD/Github/pokered/text/oakspeech.tx",
+		"/home/daniel/Documents/HD/Github/pokered/text/oakspeech.asm",
+		"/home/daniel/Documents/HD/Github/pokered/text/trainer_names.asm",
+		"/home/daniel/Documents/HD/Github/pokered/text/maps/bike_shop.asm",
+		"/home/daniel/Documents/HD/Github/pokered/text/pokedex.asm",
+		"/home/daniel/Documents/HD/Github/pokered/red.asm",
+		"/usr/share/i18n/locales/pt_BR",
+		"/usr/share/i18n/locales/en_US",
+		"/home/daniel/Documents/Damas.pas",
+		"/media/daniel/Dados/Github/final-cg1/olar",
+		"/home/daniel/Documents/hplip-3.14.6.run",
+		"/etc/X11/xorg.conf.d/51-clickpad.conf",
+		"/etc/X11/xorg.conf.d/50-synaptics.conf~",
+		"/etc/X11/xorg.conf.d/50-synaptics.conf",
+		"/media/daniel/Dados/Documentos/FBD/lista-10-Relational.txt",
+		"/media/daniel/Dados/Documentos/FBD/FBD - Lista 10.txt",
+		"/home/daniel/Documents/relational/relational_gui.py",
+		"/home/daniel/Documents/Teste/untitled.c"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"FuncaoConstante*",
+			"shared",
+			"FuncoesReais",
+			"Polynomial",
+			"add",
+			"tnw::",
+			"const tnw::FuncaoReal&",
+			"&g",
+			"&f",
+			"const tnw::FuncaoReal&",
+			"->",
+			"+",
+			"realFunctions",
+			"const",
+			".c",
+			"polinomios",
+			"funcoesReais",
+			"FuncaoReal&",
+			"tnw::",
+			"*",
+			"tnw::",
+			"FuncoesReais",
+			".e",
+			"Polinomio",
+			"polinomio",
+			"Polinomio",
+			"SYMBOL",
+			"nomeArquivo",
+			".",
+			"output",
+			"skip",
+			"DefaultNamesPlayer",
+			"LoadDefaultNamesPlayer",
+			"LoadDefaultNames",
+			"TIME",
+			"brincar",
+			"reclamar",
+			"brincar",
+			"FORCE"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 20.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "final-metodos1.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 177.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
