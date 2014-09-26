@@ -23,3 +23,6 @@ bin/*
 
 #Log de Compilação
 log
+
+# workspace files are user-specific
+*.sublime-workspace

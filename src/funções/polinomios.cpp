@@ -5,7 +5,7 @@
 
 // Métodos
 double tnw::Polinomio::eval(double x) const{
-	int bi = coeficientes[grau];
+	double bi = coeficientes[grau];
 	for (int i = grau-1; i >= 0; --i)
 	{
 		bi = coeficientes[i] + bi * x;
@@ -14,7 +14,7 @@ double tnw::Polinomio::eval(double x) const{
 }
 
 double tnw::Polinomio::evalDerivada(double x) const{
-	int bi = coeficientes[this->grau],ci = 0;
+	double bi = coeficientes[this->grau],ci = 0;
 	for (int i = this->grau-1; i >= 0; --i)
 	{
 		ci = bi + ci * x;

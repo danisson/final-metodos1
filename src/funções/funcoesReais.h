@@ -6,8 +6,8 @@
 #include <initializer_list>
 #include <ostream>
 
-#define makeFun(A) std::shared_ptr<tnw::FuncaoReal>(new A)
-#define makeFun2(A) std::shared_ptr<tnw::FuncaoReal>(A)
+#define newFun(A) std::shared_ptr<tnw::FuncaoReal>(new A)
+#define makeFun(A) std::shared_ptr<tnw::FuncaoReal>(A)
 
 namespace tnw
 {
@@ -18,6 +18,7 @@ namespace tnw
 		virtual double evalDerivada(double x) const = 0;
 		virtual ~FuncaoReal(){};
 	};
+
 	typedef std::shared_ptr<FuncaoReal> FuncaoRealP;
 
 	class FuncaoConstante : public FuncaoReal
@@ -51,11 +52,22 @@ namespace tnw
 		~FuncoesReais();
 	};
 	namespace op {
-		FuncaoRealP  add(const FuncaoRealP& f, const FuncaoRealP& g);
-		FuncaoRealP  sub(const FuncaoRealP& f, const FuncaoRealP& g);
-		FuncaoRealP mult(const FuncaoRealP& f, const FuncaoRealP& g);
-		FuncaoRealP  add(const FuncaoRealP& f, double v);
-		FuncaoRealP mult(const FuncaoRealP& f, double v);
+		FuncaoRealP compose(const FuncaoRealP& f, const FuncaoRealP& g);
+
+		FuncaoRealP operator+(const FuncaoRealP& f, const FuncaoRealP& g);
+		FuncaoRealP operator-(const FuncaoRealP& f, const FuncaoRealP& g);
+		FuncaoRealP operator*(const FuncaoRealP& f, const FuncaoRealP& g);
+		FuncaoRealP operator/(const FuncaoRealP& f, const FuncaoRealP& g);
+
+		FuncaoRealP operator+(const FuncaoRealP& f, double v);
+		FuncaoRealP operator-(const FuncaoRealP& f, double v);
+		FuncaoRealP operator*(const FuncaoRealP& f, double v);
+		FuncaoRealP operator/(const FuncaoRealP& f, double v);
+
+		FuncaoRealP operator+(double v, const FuncaoRealP& g);
+		FuncaoRealP operator-(double v, const FuncaoRealP& g);
+		FuncaoRealP operator*(double v, const FuncaoRealP& g);
+		FuncaoRealP operator/(double v, const FuncaoRealP& g);
 	}
 
 	class Polinomio :  public FuncaoReal

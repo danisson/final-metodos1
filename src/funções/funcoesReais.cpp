@@ -27,22 +27,35 @@ double FuncoesReais::eval(double x) const{
 	switch (op){
 		case '+':
 			return e->eval(x) + d->eval(x);
-		case '*':
-			return e->eval(x) * d->eval(x);
 		case '-':
 			return e->eval(x) - d->eval(x);
+		case '*':
+			return e->eval(x) * d->eval(x);
+		case '/':
+			return e->eval(x) / d->eval(x);
+		case 'o':
+			return e->eval(d->eval(x));
 		default:
 			return 0;
 	}
 }
 
 double FuncoesReais::evalDerivada(double x) const{
-	if(op=='+')
-		return e->evalDerivada(x) + d->evalDerivada(x);
-	if (op=='*')
-		return e->evalDerivada(x) * d->eval(x) +
-		       d->evalDerivada(x) * e->eval(x);
-	return 0;
+	switch(op){
+		case '+':
+			return e->evalDerivada(x) + d->evalDerivada(x);
+		case '-':
+			return e->evalDerivada(x) - d->evalDerivada(x);
+		case '*':
+			return e->evalDerivada(x) * d->eval(x) +
+				   d->evalDerivada(x) * e->eval(x);
+		case '/':
+			return ( e->evalDerivada(x)*d->eval(x) - e->eval(x)*d->evalDerivada(x) ) / (d->eval(x)*d->eval(x));
+		case 'o':
+			return e->evalDerivada(d->eval(x)) * d->evalDerivada(x);
+		default:
+			return 0;
+	}
 }
 // Construtor
 
@@ -54,20 +67,50 @@ FuncoesReais::FuncoesReais(char op,const FuncaoRealP& f,const FuncaoRealP& g) {
 
 
 // Operadores Sobrecarregados
-FuncaoRealP tnw::op::add(const FuncaoRealP& f, const FuncaoRealP& g){
-	return makeFun(FuncoesReais('+',f,g));
+
+FuncaoRealP tnw::op::compose(const FuncaoRealP& f, const FuncaoRealP& g){
+	return newFun(FuncoesReais('o',f,g));
 }
-FuncaoRealP tnw::op::sub(const FuncaoRealP& f, const FuncaoRealP& g){
-	return makeFun(FuncoesReais('-',f,g));
+
+FuncaoRealP tnw::op::operator+(const FuncaoRealP& f, const FuncaoRealP& g){
+	return newFun(FuncoesReais('+',f,g));
 }
-FuncaoRealP tnw::op::mult(const FuncaoRealP& f, const FuncaoRealP& g){
-	return makeFun(FuncoesReais('*',f,g));
+FuncaoRealP tnw::op::operator-(const FuncaoRealP& f, const FuncaoRealP& g){
+	return newFun(FuncoesReais('-',f,g));
 }
-FuncaoRealP tnw::op::add(const FuncaoRealP& f, double v){
-	return makeFun(FuncoesReais('+',f,makeFun(FuncaoConstante(v))));
+FuncaoRealP tnw::op::operator*(const FuncaoRealP& f, const FuncaoRealP& g){
+	return newFun(FuncoesReais('*',f,g));
 }
-FuncaoRealP tnw::op::mult(const FuncaoRealP& f, double v){
-	return makeFun(FuncoesReais('*',f,makeFun(FuncaoConstante(v))));
+FuncaoRealP tnw::op::operator/(const FuncaoRealP& f, const FuncaoRealP& g){
+	return newFun(FuncoesReais('/',f,g));
+}
+
+
+FuncaoRealP tnw::op::operator+(const FuncaoRealP& f, double v){
+	return newFun(FuncoesReais('+',f,newFun(FuncaoConstante(v))));
+}
+FuncaoRealP tnw::op::operator-(const FuncaoRealP& f, double v){
+	return newFun(FuncoesReais('-',f,newFun(FuncaoConstante(v))));
+}
+FuncaoRealP tnw::op::operator*(const FuncaoRealP& f, double v){
+	return newFun(FuncoesReais('*',f,newFun(FuncaoConstante(v))));
+}
+
+FuncaoRealP tnw::op::operator/(const FuncaoRealP& f, double v){
+	return newFun(FuncoesReais('/',f,newFun(FuncaoConstante(v))));
+}
+
+FuncaoRealP tnw::op::operator+(double v, const FuncaoRealP& g){
+	return newFun(FuncoesReais('+',newFun(FuncaoConstante(v)),g));
+}
+FuncaoRealP tnw::op::operator-(double v, const FuncaoRealP& g){
+	return newFun(FuncoesReais('-',newFun(FuncaoConstante(v)),g));
+}
+FuncaoRealP tnw::op::operator*(double v, const FuncaoRealP& g){
+	return newFun(FuncoesReais('*',newFun(FuncaoConstante(v)),g));
+}
+FuncaoRealP tnw::op::operator/(double v, const FuncaoRealP& g){
+	return newFun(FuncoesReais('/',newFun(FuncaoConstante(v)),g));
 }
 // Destrutor
 

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Fun",
+				"FuncaoConstante"
+			],
+			[
 				"sha",
 				"shared_ptr"
 			],
@@ -14,10 +18,6 @@
 			[
 				"fun",
 				"funcoesReais"
-			],
-			[
-				"Fun",
-				"FuncaoConstante"
 			],
 			[
 				"get",
@@ -119,6 +119,41 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "",
+			"file": "/home/daniel/Documents/HD/Github/final-metodos1/LICENSE",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/funções/funcoesReais.h",
+			"settings":
+			{
+				"buffer_size": 2700,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/funções/funcoesReais.cpp",
+			"settings":
+			{
+				"buffer_size": 1926,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/teste.cpp",
+			"settings":
+			{
+				"buffer_size": 281,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -163,11 +198,7 @@
 	},
 	"console":
 	{
-		"height": 0.0,
-		"history":
-		[
-			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
-		]
+		"height": 0.0
 	},
 	"distraction_free":
 	{
@@ -178,20 +209,16 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/media/daniel/Dados/Github/final-metodos1/src",
-		"/media/daniel/Dados/Github/final-metodos1/src/funções",
-		"/media/daniel/Dados/Github/final-metodos1"
-	],
 	"file_history":
 	[
-		"/media/daniel/Dados/Github/final-metodos1/src/funções/funcoesReais.cpp",
-		"/media/daniel/Dados/Github/final-metodos1/src/funções/funcoesReais.h",
 		"/media/daniel/Dados/Github/final-metodos1/src/teste.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/src/funções/funcoesReais.h",
+		"/media/daniel/Dados/Github/final-metodos1/src/funções/funcoesReais.cpp",
+		"/media/daniel/Dados/Github/final-metodos1/log",
+		"/media/daniel/Dados/Github/final-metodos1/.gitignore",
+		"/home/daniel/Documents/HD/Github/final-metodos1/src/teste.cpp",
 		"/media/daniel/Dados/Github/final-metodos1/src/funções/polinomios.cpp",
 		"/media/daniel/Dados/Github/final-metodos1/lof",
-		"/media/daniel/Dados/Github/final-metodos1/log",
 		"/media/daniel/Dados/Github/final-metodos1/src/eqSolver.h",
 		"/media/daniel/Dados/Github/final-cg1/src/transformmatrix.cpp",
 		"/media/daniel/Dados/Github/final-metodos1/makefile",
@@ -293,7 +320,7 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 22.0
 	},
 	"find_in_files":
 	{
@@ -307,6 +334,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"(new ",
+			"makeFun",
+			"new",
+			"FuncaoRealP& ",
+			"FuncaoRealP&",
+			"FuncaoReal*",
+			"SYMBOL",
 			"FuncaoConstante*",
 			"shared",
 			"FuncoesReais",
@@ -363,8 +397,115 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/daniel/Documents/HD/Github/final-metodos1/LICENSE",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/funções/funcoesReais.h",
+					"settings":
+					{
+						"buffer_size": 2700,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1072,
+								1138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 252.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/funções/funcoesReais.cpp",
+					"settings":
+					{
+						"buffer_size": 1926,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1287,
+								1287
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/teste.cpp",
+					"settings":
+					{
+						"buffer_size": 281,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								226,
+								226
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -403,7 +544,6 @@
 	{
 		"height": 0.0
 	},
-	"project": "final-metodos1.sublime-project",
 	"replace":
 	{
 		"height": 40.0
@@ -425,25 +565,10 @@
 		],
 		"width": 380.0
 	},
-	"select_symbol":
-	{
-		"height": 0.0,
-		"selected_items":
-		[
-		],
-		"width": 0.0
-	},
-	"selected_group": 0,
-	"settings":
-	{
-	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 177.0,
-	"status_bar_visible": true,
-	"template_settings":
-	{
-	}
+	"status_bar_visible": true
 }
