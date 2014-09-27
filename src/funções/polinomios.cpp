@@ -23,6 +23,33 @@ double tnw::Polinomio::evalDerivada(double x) const{
 	return ci;
 }
 
+std::string tnw::Polinomio::toString() const {
+	std::string out = "( ";
+	std::string aux;
+	for (int i = 0; i <= this->getGrau(); ++i)
+	{
+		if(this->getCoeficientes()[i]==1){
+			out += "(x^" + std::to_string(i) + ")";
+			if(i< this->getGrau()) {
+				out += " + ";
+			}
+		}
+		else if (this->getCoeficientes()[i]!=0)
+		{
+			aux = std::to_string(coeficientes[i]);
+			aux.erase(aux.find_last_not_of('0') + 1, std::string::npos);
+			if(aux.back() == '.')
+				aux.pop_back();
+			out+= aux + "*(x^" + std::to_string(i) + ")";
+			if(i< this->getGrau()) {
+				out += " + ";
+			}
+		}
+	}
+	out+= " )";
+	return out;
+}
+
 // Construtores
 tnw::Polinomio::Polinomio(std::vector<double> coeficientes) {
 	grau = coeficientes.size()-1;

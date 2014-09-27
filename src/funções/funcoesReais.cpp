@@ -17,6 +17,10 @@ double FuncaoConstante::eval(double x) const{
 double FuncaoConstante::evalDerivada(double x) const{
 	return 0;
 }
+std::string FuncaoConstante::toString() const{
+	std::string out = ""+this->constante;
+	return out;
+}
 
 FuncaoConstante::~FuncaoConstante(){};
 
@@ -57,6 +61,17 @@ double FuncoesReais::evalDerivada(double x) const{
 			return 0;
 	}
 }
+
+std::string FuncoesReais::toString() const{
+	std::string out = "( ";
+	out += e->toString()+" ";
+	out += op;
+	out += " "+d->toString();
+	out += " )";
+
+	return out;
+}
+
 // Construtor
 
 FuncoesReais::FuncoesReais(char op,const FuncaoRealP& f,const FuncaoRealP& g) {

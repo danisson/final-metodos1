@@ -4,10 +4,12 @@
 
 namespace tnw
 {
-	class IEqSolver
+	class EqSolver
 	{
-		public:
-			virtual double resolverEquação(realFunction* f) =0;
+	private:
+		double epsilon;
+	public:
+		virtual double resolverEquação(realFunction* f) =0;
 	};
 }
 #endif

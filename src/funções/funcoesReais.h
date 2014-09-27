@@ -1,6 +1,7 @@
 #ifndef REALFUNCTIONS_H
 #define REALFUNCTIONS_H
 #include <vector>
+#include <string>
 #include <memory>
 #include <tuple>
 #include <initializer_list>
@@ -16,6 +17,7 @@ namespace tnw
 	public:
 		virtual double eval(double x) const = 0;
 		virtual double evalDerivada(double x) const = 0;
+		virtual std::string toString() const =0;
 		virtual ~FuncaoReal(){};
 	};
 
@@ -29,6 +31,7 @@ namespace tnw
 		FuncaoConstante(double constante);
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+		std::string toString() const;
 		~FuncaoConstante();
 	};
 
@@ -42,6 +45,7 @@ namespace tnw
 		// Métodos
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+		std::string toString() const;
 
 		// Construtor
 		FuncoesReais(char op,const FuncaoRealP& f,const  FuncaoRealP& g);
@@ -51,6 +55,7 @@ namespace tnw
 		// Desconstrutor
 		~FuncoesReais();
 	};
+
 	namespace op {
 		FuncaoRealP compose(const FuncaoRealP& f, const FuncaoRealP& g);
 
@@ -79,6 +84,7 @@ namespace tnw
 		// Métodos
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+		std::string toString() const;
 
 		// Construtores
 		// Construtor Principal
@@ -108,7 +114,7 @@ namespace tnw
 		// Métodos
 		double eval(double x) const;
 		double evalDerivada(double x) const;
-		FuncaoRealP copy();
+		std::string toString() const;
 
 		// Construtores
 		// Construtor principal
