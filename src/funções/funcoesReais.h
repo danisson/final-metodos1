@@ -17,11 +17,32 @@ namespace tnw
 	public:
 		virtual double eval(double x) const = 0;
 		virtual double evalDerivada(double x) const = 0;
+		double evalIntegral(double a, double b);
+		double evalIntegral(double a, double b, double n);
+
 		virtual std::string toString() const =0;
+
 		virtual ~FuncaoReal(){};
 	};
 
 	typedef std::shared_ptr<FuncaoReal> FuncaoRealP;
+	typedef double (*funcaoReal)(double);
+
+	class FuncaoExistente : public FuncaoReal
+	{
+	private:
+		std::string nome;
+		funcaoReal f;
+	public:
+		FuncaoExistente(funcaoReal f, std::string name);
+
+		virtual double eval(double x) const;
+		virtual double evalDerivada(double x) const;
+		
+		virtual std::string toString() const;
+
+		~FuncaoExistente();
+	};
 
 	class FuncaoConstante : public FuncaoReal
 	{
@@ -29,9 +50,12 @@ namespace tnw
 		int constante;
 	public:
 		FuncaoConstante(double constante);
+
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+
 		std::string toString() const;
+
 		~FuncaoConstante();
 	};
 

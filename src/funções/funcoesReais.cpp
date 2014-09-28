@@ -1,8 +1,29 @@
 #include "funcoesReais.h"
 #include <iostream>
+#include <cmath>
+#include <limits>
 using namespace tnw;
 
 //#define makeFun(A) std::shared_ptr<tnw::FuncaoReal>(A)
+
+// ------------------------  Funções Existentes -------------------------- //
+FuncaoExistente::FuncaoExistente(funcaoReal f,std::string name) {
+	this->f = f;
+	this->nome = name;
+}
+double FuncaoExistente::eval(double x) const {
+	return f(x);
+}
+// Derivada é cálculada numéricamente
+double FuncaoExistente::evalDerivada(double x) const {
+	const double epsilon = sqrt(std::numeric_limits<double>::epsilon())*x;
+	return (f(x+epsilon)-f(x-epsilon))/(2*epsilon);
+}
+std::string FuncaoExistente::toString() const {
+	return "( "+nome+"(x)"+" )";
+}
+FuncaoExistente::~FuncaoExistente(){};
+
 
 // ------------------------  Funções Constante  -------------------------- //
 
@@ -17,6 +38,7 @@ double FuncaoConstante::eval(double x) const{
 double FuncaoConstante::evalDerivada(double x) const{
 	return 0;
 }
+
 std::string FuncaoConstante::toString() const{
 	std::string out = ""+this->constante;
 	return out;
