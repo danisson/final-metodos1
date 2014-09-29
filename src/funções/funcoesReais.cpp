@@ -4,8 +4,6 @@
 #include <limits>
 using namespace tnw;
 
-//#define makeFun(A) std::shared_ptr<tnw::FuncaoReal>(A)
-
 // ------------------------  Funções Existentes -------------------------- //
 FuncaoExistente::FuncaoExistente(funcaoReal f,std::string name) {
 	this->f = f;
@@ -40,8 +38,12 @@ double FuncaoConstante::evalDerivada(double x) const{
 }
 
 std::string FuncaoConstante::toString() const{
-	std::string out = ""+this->constante;
-	return out;
+	std::string aux;
+	aux = std::to_string(constante);
+	aux.erase(aux.find_last_not_of('0') + 1, std::string::npos);
+	if(aux.back() == '.')
+		aux.pop_back();
+	return aux;
 }
 
 FuncaoConstante::~FuncaoConstante(){};
@@ -61,6 +63,8 @@ double FuncoesReais::eval(double x) const{
 			return e->eval(x) / d->eval(x);
 		case 'o':
 			return e->eval(d->eval(x));
+		case '^':
+			return std::pow(e->eval(x),d->eval(x));
 		default:
 			return 0;
 	}
@@ -76,9 +80,16 @@ double FuncoesReais::evalDerivada(double x) const{
 			return e->evalDerivada(x) * d->eval(x) +
 				   d->evalDerivada(x) * e->eval(x);
 		case '/':
-			return ( e->evalDerivada(x)*d->eval(x) - e->eval(x)*d->evalDerivada(x) ) / (d->eval(x)*d->eval(x));
+			return  (e->evalDerivada(x)*d->eval(x)  -
+			         e->eval(x)*d->evalDerivada(x)) /
+			        (d->eval(x)*d->eval(x));
 		case 'o':
 			return e->evalDerivada(d->eval(x)) * d->evalDerivada(x);
+		case '^':
+			// f[x]^(-1 + g[x]) (g[x] f'[x] + f[x] Log[f[x]] g'[x])
+			return std::pow(e->eval(x),-1+d->eval(x)) *
+			       ((d->eval(x) * e->evalDerivada(x)) +
+			       	(e->eval(x) * std::log(e->eval(x)) * d->evalDerivada(x)));
 		default:
 			return 0;
 	}
@@ -96,7 +107,7 @@ std::string FuncoesReais::toString() const{
 
 // Construtor
 
-FuncoesReais::FuncoesReais(char op,const FuncaoRealP& f,const FuncaoRealP& g) {
+FuncoesReais::FuncoesReais(char op,const FuncaoRealP& f,const FuncaoRealP& g){
 	this->op = op;
 	this->e = f;
 	this->d = g;
@@ -121,7 +132,9 @@ FuncaoRealP tnw::op::operator*(const FuncaoRealP& f, const FuncaoRealP& g){
 FuncaoRealP tnw::op::operator/(const FuncaoRealP& f, const FuncaoRealP& g){
 	return newFun(FuncoesReais('/',f,g));
 }
-
+FuncaoRealP tnw::op::pow(const FuncaoRealP& f, const FuncaoRealP& g) {
+	return newFun(FuncoesReais('^',f,g));
+}
 
 FuncaoRealP tnw::op::operator+(const FuncaoRealP& f, double v){
 	return newFun(FuncoesReais('+',f,newFun(FuncaoConstante(v))));
@@ -136,6 +149,9 @@ FuncaoRealP tnw::op::operator*(const FuncaoRealP& f, double v){
 FuncaoRealP tnw::op::operator/(const FuncaoRealP& f, double v){
 	return newFun(FuncoesReais('/',f,newFun(FuncaoConstante(v))));
 }
+FuncaoRealP tnw::op::pow(const FuncaoRealP& f, double v) {
+	return newFun(FuncoesReais('^',f,newFun(FuncaoConstante(v))));
+}
 
 FuncaoRealP tnw::op::operator+(double v, const FuncaoRealP& g){
 	return newFun(FuncoesReais('+',newFun(FuncaoConstante(v)),g));
@@ -148,6 +164,9 @@ FuncaoRealP tnw::op::operator*(double v, const FuncaoRealP& g){
 }
 FuncaoRealP tnw::op::operator/(double v, const FuncaoRealP& g){
 	return newFun(FuncoesReais('/',newFun(FuncaoConstante(v)),g));
+}
+FuncaoRealP tnw::op::pow(double v, const FuncaoRealP& g){
+	return newFun(FuncoesReais('^',newFun(FuncaoConstante(v)),g));
 }
 // Destrutor
 

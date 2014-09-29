@@ -41,12 +41,5 @@ double tnw::Exponencial::getCoeficiente() const {
 	return this->coeficiente;
 }
 
-
-// Operadores Sobrecarregados 
-std::ostream& tnw::operator<< (std::ostream& os, const tnw::Exponencial& e) {
-	os << "f(x) = "<< e.getCoeficiente() <<"*(e^x)";
-	return os;
-}
-
 // Desconstrutor
 tnw::Exponencial::~Exponencial() {}

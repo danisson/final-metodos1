@@ -26,7 +26,18 @@ double tnw::Polinomio::evalDerivada(double x) const{
 std::string tnw::Polinomio::toString() const {
 	std::string out = "( ";
 	std::string aux;
-	for (int i = 0; i <= this->getGrau(); ++i)
+	if (coeficientes[0]!=0)
+	{
+		aux = std::to_string(coeficientes[0]);
+		aux.erase(aux.find_last_not_of('0') + 1, std::string::npos);
+		if(aux.back() == '.')
+			aux.pop_back();
+		out+= aux;
+		if(0< this->getGrau())
+			out += " + ";
+	}
+
+	for (int i = 1; i <= this->getGrau(); ++i)
 	{
 		if(this->getCoeficientes()[i]==1){
 			out += "(x^" + std::to_string(i) + ")";
@@ -41,9 +52,8 @@ std::string tnw::Polinomio::toString() const {
 			if(aux.back() == '.')
 				aux.pop_back();
 			out+= aux + "*(x^" + std::to_string(i) + ")";
-			if(i< this->getGrau()) {
+			if(i< this->getGrau())
 				out += " + ";
-			}
 		}
 	}
 	out+= " )";
@@ -80,27 +90,6 @@ tnw::Polinomio& tnw::Polinomio::operator=(tnw::Polinomio p) {
 	this->grau = p.grau;
 	this->coeficientes = std::vector<double>(p.getCoeficientes());
 	return *this;
-}
-
-std::ostream& tnw::operator<< (std::ostream& os, const tnw::Polinomio& p) {
-	os << "f(x) = ";
-	for (int i = 0; i <= p.getGrau(); ++i)
-	{
-		if(p.getCoeficientes()[i]==1){
-			os << "(x^" << i << ")";
-			if(i< p.getGrau()) {
-				os << " + ";
-			}
-		}
-		else if (p.getCoeficientes()[i]!=0)
-		{
-			os << p.getCoeficientes()[i] << "*(x^" << i << ")";
-			if(i< p.getGrau()) {
-				os << " + ";
-			}
-		}
-	}
-	return os;
 }
 
 // Desconstrutor

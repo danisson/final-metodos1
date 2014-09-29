@@ -3,7 +3,7 @@ using namespace tnw;
 
 
 // Integral numérica usando regra de Simpson com n subdivisões
-double FuncaoReal::evalIntegral(double a, double b, double n) {
+double FuncaoReal::evalIntegral(double a, double b, double n) const{
 	const double h = (b-a)/n;
 	double acc = eval(a)+eval(b);
 	
@@ -15,6 +15,6 @@ double FuncaoReal::evalIntegral(double a, double b, double n) {
 	return (h/3)*acc;
 }
 
-double FuncaoReal::evalIntegral(double a, double b) {
+double FuncaoReal::evalIntegral(double a, double b) const{
 	return evalIntegral(a,b,10000);
 }

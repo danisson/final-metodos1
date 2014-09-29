@@ -9,14 +9,25 @@ using namespace tnw::op;
 int main(int argc, char const *argv[])
 {
 	printf("\nTeste de Sanidade!\n");
-	printf("Função f(x) = x²-3\n");
 
-	auto f = newFun(tnw::Polinomio({-3,0,1}));
+	printf("Função f(x) = x²-3\n");
+	tnw::FuncaoRealP f = newFun(tnw::Polinomio({-3,0,1}));
 
 	printf("f(1) = %lf\n", f->eval(1));
 	printf("f(2) = %lf\n", f->eval(2));
 	printf("f(1.7320508) = %le ~= 0\n", f->eval(1.7320508));
 	printf("∫f(x) dx;[1,2] = %lf ~= -0.66667\n", f->evalIntegral(1,2));
+	printf("f'(2) = %lf\n", f->evalDerivada(2));
+	printf("f(x) = %s\n", f->toString().c_str());
+
+	printf("\nFunção f(x) = x²-3\n");
+	f = pow(newFun(tnw::Identidade()),2)-3;
+
+	printf("f(1) = %lf\n", f->eval(1));
+	printf("f(2) = %lf\n", f->eval(2));
+	printf("f(1.7320508) = %le ~= 0\n", f->eval(1.7320508));
+	printf("∫f(x) dx;[1,2] = %lf ~= -0.66667\n", f->evalIntegral(1,2));
+	printf("f'(2) = %lf\n", f->evalDerivada(2));
 	printf("f(x) = %s\n", f->toString().c_str());
 
 	printf("\nFunção f(x) = e^(x^2)\n");

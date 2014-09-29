@@ -17,8 +17,8 @@ namespace tnw
 	public:
 		virtual double eval(double x) const = 0;
 		virtual double evalDerivada(double x) const = 0;
-		double evalIntegral(double a, double b);
-		double evalIntegral(double a, double b, double n);
+		virtual double evalIntegral(double a, double b) const;
+		double evalIntegral(double a, double b, double n) const;
 
 		virtual std::string toString() const =0;
 
@@ -47,7 +47,7 @@ namespace tnw
 	class FuncaoConstante : public FuncaoReal
 	{
 	private:
-		int constante;
+		double constante;
 	public:
 		FuncaoConstante(double constante);
 
@@ -66,17 +66,13 @@ namespace tnw
 		FuncaoRealP e;
 		FuncaoRealP d;
 	public:
-		// Métodos
-		double eval(double x) const;
-		double evalDerivada(double x) const;
-		std::string toString() const;
-
-		// Construtor
 		FuncoesReais(char op,const FuncaoRealP& f,const  FuncaoRealP& g);
 
-		// Operadores Sobrecarregados
+		double eval(double x) const;
+		double evalDerivada(double x) const;
 
-		// Desconstrutor
+		std::string toString() const;
+
 		~FuncoesReais();
 	};
 
@@ -87,16 +83,19 @@ namespace tnw
 		FuncaoRealP operator-(const FuncaoRealP& f, const FuncaoRealP& g);
 		FuncaoRealP operator*(const FuncaoRealP& f, const FuncaoRealP& g);
 		FuncaoRealP operator/(const FuncaoRealP& f, const FuncaoRealP& g);
+		FuncaoRealP pow(const FuncaoRealP& f, const FuncaoRealP& g);
 
 		FuncaoRealP operator+(const FuncaoRealP& f, double v);
 		FuncaoRealP operator-(const FuncaoRealP& f, double v);
 		FuncaoRealP operator*(const FuncaoRealP& f, double v);
 		FuncaoRealP operator/(const FuncaoRealP& f, double v);
+		FuncaoRealP pow(const FuncaoRealP& f, double v);
 
 		FuncaoRealP operator+(double v, const FuncaoRealP& g);
 		FuncaoRealP operator-(double v, const FuncaoRealP& g);
 		FuncaoRealP operator*(double v, const FuncaoRealP& g);
 		FuncaoRealP operator/(double v, const FuncaoRealP& g);
+		FuncaoRealP pow(double v, const FuncaoRealP& g);
 	}
 
 	class Polinomio :  public FuncaoReal
@@ -105,57 +104,51 @@ namespace tnw
 		std::vector<double> coeficientes;
 		int grau;
 	public:
-		// Métodos
-		double eval(double x) const;
-		double evalDerivada(double x) const;
-		std::string toString() const;
-
-		// Construtores
-		// Construtor Principal
 		Polinomio(std::vector<double> coeficientes);
-		// Bracket-initialzer
 		Polinomio(std::initializer_list<double> coeficientes);
-		// Copiador
 		Polinomio(const Polinomio& p);
 
-		// Getter & Setters
+		double eval(double x) const;
+		double evalDerivada(double x) const;
+
+		std::string toString() const;
 		int getGrau() const;
 		const std::vector<double>& getCoeficientes() const;
 
-		//Operadores Sobrecarregados
 		tnw::Polinomio& operator=(tnw::Polinomio p);
 
-		// Desconstrutor
 		~Polinomio();
 	};
-	std::ostream& operator<< (std::ostream& os, const Polinomio& p);
 
 	class Exponencial :  public FuncaoReal
 	{
 	private:
 		double coeficiente;
 	public:
-		// Métodos
-		double eval(double x) const;
-		double evalDerivada(double x) const;
-		std::string toString() const;
-
-		// Construtores
-		// Construtor principal
 		Exponencial(double coeficiente);
-		// Coeficiente = 1
 		Exponencial();
-		// Copiador
 		Exponencial(const Exponencial& e);
 
-		// Getter & Setters
+		double eval(double x) const;
+		double evalDerivada(double x) const;
+
+		std::string toString() const;
 		double getCoeficiente() const;
 
-		//Operadores Sobrecarregados
-
-		// Desconstrutor
 		~Exponencial();
 	};
-	std::ostream& operator<< (std::ostream& os, const Exponencial& e);
+
+	class Identidade : public FuncaoReal
+	{
+	public:
+		Identidade();
+
+		double eval(double x) const;
+		double evalDerivada(double x) const;
+
+		std::string toString() const;
+
+		~Identidade();
+	};
 }
 #endif

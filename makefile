@@ -1,15 +1,17 @@
-# the compiler: gcc for C program, define as g++ for C++
+# usando g++ como compilador
 CC = g++
 
 # compiler flags:
-#  -g    adds debugging information to the executable file
-#  -Wall turns on most, but not all, compiler warnings
+#  -g        adiciona informações de debug no executável
+#  -Wall     ativa a maioria dos erros de compilação
+#  -std=c+11 usa o standard mais recente
 CFLAGS  = -g -Wall -std=c++11
 
 default: clean all
 
-all: bin/teste.o bin/funcoesReais.o bin/funcaoReal.o bin/polinomios.o bin/exponencial.o
-	$(CC) $(CFLAGS) -o bin/teste bin/teste.o bin/funcoesReais.o bin/funcaoReal.o bin/polinomios.o bin/exponencial.o
+teste: clean bin/teste.o bin/funcoesReais.o bin/funcaoReal.o bin/polinomios.o bin/exponencial.o bin/identidade.o
+	$(CC) $(CFLAGS) -o bin/teste bin/teste.o bin/funcoesReais.o bin/funcaoReal.o bin/polinomios.o bin/exponencial.o bin/identidade.o
+	bin/teste
 
 bin/teste.o: src/teste.cpp src/funções/funcoesReais.h
 	$(CC) $(CFLAGS) -c src/teste.cpp -o bin/teste.o
@@ -25,6 +27,9 @@ bin/polinomios.o: src/funções/polinomios.cpp src/funções/funcoesReais.h
 
 bin/exponencial.o: src/funções/exponencial.cpp src/funções/funcoesReais.h
 	$(CC) $(CFLAGS) -c src/funções/exponencial.cpp -o bin/exponencial.o
+
+bin/identidade.o: src/funções/identidade.cpp src/funções/funcoesReais.h
+	$(CC) $(CFLAGS) -c src/funções/identidade.cpp -o bin/identidade.o
 
 clean:
 	-rm -f bin/*
