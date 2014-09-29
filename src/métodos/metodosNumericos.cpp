@@ -1,0 +1,28 @@
+#include "metodosNumericos.h"
+#include <cmath>
+
+using namespace tnw;
+
+
+// Função de bissecção para calcular um bom interalo das raízes.
+
+void tnw::bissec (double a, double b, FuncaoRealP f, double epsilon, double& retornoA, double& retornoB) {
+	double c, fc, fa;
+	while (std::abs(a-b) > epsilon) {
+		c = 0.5*(a+b);
+		fc = (f->eval(c));
+		fa = (f->eval(a));
+
+		if (fc*fa > 0)
+			a = c;
+		else if (fc*fa < 0)
+			b = c;
+		else {
+			a = c-epsilon;
+			b = c+epsilon;
+		}
+	}
+
+	retornoA = a;
+	retornoB = b;
+}

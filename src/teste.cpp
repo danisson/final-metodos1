@@ -1,4 +1,5 @@
 #include "funções/funcoesReais.h"
+#include "métodos/metodosNumericos.h"
 #include <cstdio>
 #include <iostream>
 #include <memory>
@@ -12,6 +13,11 @@ int main(int argc, char const *argv[])
 
 	printf("Função f(x) = x²-3\n");
 	tnw::FuncaoRealP f = newFun(tnw::Polinomio({-3,0,1}));
+
+	double respostaA,respostaB;
+	tnw::bissec(0,2,f,0.001,respostaA,respostaB);
+
+	printf("Intervalo = %1f\n, %1f\n",respostaA,respostaB);
 
 	printf("f(1) = %lf\n", f->eval(1));
 	printf("f(2) = %lf\n", f->eval(2));
