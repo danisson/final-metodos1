@@ -3,5 +3,5 @@
 
 namespace tnw {
 	typedef std::tuple<double,double> intervalo;
-	tnw::intervalo bissec (double a, double b, FuncaoRealP f, double epsilon);
+	tnw::intervalo bissec (tnw::intervalo a_b, FuncaoRealP f, double epsilon);
 }

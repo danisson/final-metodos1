@@ -13,9 +13,8 @@ int main(int argc, char const *argv[])
 
 	printf("Função f(x) = x²-3\n");
 	tnw::FuncaoRealP f = newFun(tnw::Polinomio({-3,0,1}));
-
-	tnw::intervalo inter = tnw::bissec(0,2,f,0.001);
-
+	tnw::intervalo a_b = std::make_tuple(0,2);
+	tnw::intervalo inter = tnw::bissec(a_b,f,0.001);
 	printf("Intervalo = %1f, %1f\n",std::get<0>(inter),std::get<1>(inter));
 
 	printf("f(1) = %lf\n", f->eval(1));
@@ -53,6 +52,9 @@ int main(int argc, char const *argv[])
 	printf("\nFunção f(x) = sin(x)\n");
 	f = newFun(tnw::FuncaoExistente(std::sin,"sin"));
 
+	a_b = std::make_tuple(3,4);
+	inter = tnw::bissec(a_b,f,0.001);
+	printf("Intervalo = %1f, %1f\n",std::get<0>(inter),std::get<1>(inter));
 	printf("f(2) = %lf\n",f->eval(2));
 	printf("f'(2) = %lf ~= -0.416147\n", f->evalDerivada(2));
 	printf("∫f(x) dx;[0,pi] = %lf ~= 2\n", f->evalIntegral(0,3.1416));
