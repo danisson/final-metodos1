@@ -6,7 +6,7 @@ using namespace tnw;
 
 // Função de bissecção para calcular um bom interalo das raízes.
 
-void tnw::bissec (double a, double b, FuncaoRealP f, double epsilon, double& retornoA, double& retornoB) {
+intervalo tnw::bissec (double a, double b, FuncaoRealP f, double epsilon) {
 	double c, fc, fa;
 	while (std::abs(a-b) > epsilon) {
 		c = 0.5*(a+b);
@@ -23,6 +23,5 @@ void tnw::bissec (double a, double b, FuncaoRealP f, double epsilon, double& ret
 		}
 	}
 
-	retornoA = a;
-	retornoB = b;
+	return std::make_tuple(a,b);
 }

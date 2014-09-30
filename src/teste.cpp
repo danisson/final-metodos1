@@ -14,10 +14,9 @@ int main(int argc, char const *argv[])
 	printf("Função f(x) = x²-3\n");
 	tnw::FuncaoRealP f = newFun(tnw::Polinomio({-3,0,1}));
 
-	double respostaA,respostaB;
-	tnw::bissec(0,2,f,0.001,respostaA,respostaB);
+	tnw::intervalo inter = tnw::bissec(0,2,f,0.001);
 
-	printf("Intervalo = %1f\n, %1f\n",respostaA,respostaB);
+	printf("Intervalo = %1f, %1f\n",std::get<0>(inter),std::get<1>(inter));
 
 	printf("f(1) = %lf\n", f->eval(1));
 	printf("f(2) = %lf\n", f->eval(2));

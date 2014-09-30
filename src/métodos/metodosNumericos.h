@@ -1,5 +1,7 @@
 #include "../funções/funcoesReais.h"
+#include <tuple>
 
 namespace tnw {
-	void bissec (double a, double b, FuncaoRealP f, double epsilon, double& retornoA, double& retornoB);
+	typedef std::tuple<double,double> intervalo;
+	tnw::intervalo bissec (double a, double b, FuncaoRealP f, double epsilon);
 }
