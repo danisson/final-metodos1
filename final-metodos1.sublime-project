@@ -1,0 +1,16 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "src",
+			"file_include_patterns": ["*.cpp","*.h"],
+			"name": "Fontes"
+		},
+		{
+			"follow_symlinks": true,
+			"path": ".",
+			"name": "Pasta do Projeto"
+		}
+	]
+}
