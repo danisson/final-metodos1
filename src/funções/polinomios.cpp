@@ -23,8 +23,17 @@ double tnw::Polinomio::evalDerivada(double x) const{
 	return ci;
 }
 
+tnw::FuncaoRealP tnw::Polinomio::derivada() const {
+	std::vector<double> coeficientesD;
+	for (int i = 1; i <= grau; ++i)
+	{
+		coeficientesD.push_back(coeficientes[i]*i);
+	}
+	return newFun(tnw::Polinomio(coeficientesD));
+}
+
 std::string tnw::Polinomio::toString() const {
-	std::string out = "( ";
+	std::string out = "";
 	std::string aux;
 	if (coeficientes[0]!=0)
 	{
@@ -40,7 +49,7 @@ std::string tnw::Polinomio::toString() const {
 	for (int i = 1; i <= this->getGrau(); ++i)
 	{
 		if(this->getCoeficientes()[i]==1){
-			out += "(x^" + std::to_string(i) + ")";
+			out += "x^" + std::to_string(i);
 			if(i< this->getGrau()) {
 				out += " + ";
 			}
@@ -51,12 +60,11 @@ std::string tnw::Polinomio::toString() const {
 			aux.erase(aux.find_last_not_of('0') + 1, std::string::npos);
 			if(aux.back() == '.')
 				aux.pop_back();
-			out+= aux + "*(x^" + std::to_string(i) + ")";
+			out+= aux + "*x^" + std::to_string(i);
 			if(i< this->getGrau())
 				out += " + ";
 		}
 	}
-	out+= " )";
 	return out;
 }
 

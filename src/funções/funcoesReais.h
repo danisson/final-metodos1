@@ -12,12 +12,15 @@
 
 namespace tnw
 {
+	class FuncaoReal;
+	typedef std::shared_ptr<FuncaoReal> FuncaoRealP;
 	class FuncaoReal
 	{
 	public:
 		virtual double eval(double x) const = 0;
 		virtual double evalDerivada(double x) const = 0;
 		virtual double evalIntegral(double a, double b) const;
+		virtual FuncaoRealP derivada() const = 0;
 		double evalIntegral(double a, double b, double n) const;
 
 		virtual std::string toString() const =0;
@@ -25,7 +28,6 @@ namespace tnw
 		virtual ~FuncaoReal(){};
 	};
 
-	typedef std::shared_ptr<FuncaoReal> FuncaoRealP;
 	typedef double (*funcaoReal)(double);
 
 	class FuncaoExistente : public FuncaoReal
@@ -38,10 +40,28 @@ namespace tnw
 
 		virtual double eval(double x) const;
 		virtual double evalDerivada(double x) const;
+		virtual FuncaoRealP derivada() const;
 		
 		virtual std::string toString() const;
 
 		~FuncaoExistente();
+	};
+
+
+	class DerivadaNumerica : public FuncaoReal
+	{
+	private:
+		FuncaoRealP f;
+	public:
+		DerivadaNumerica(FuncaoRealP f);
+
+		virtual double eval(double x) const;
+		virtual double evalDerivada(double x) const;
+		virtual FuncaoRealP derivada() const;
+		
+		virtual std::string toString() const;
+
+		~DerivadaNumerica();
 	};
 
 	class FuncaoConstante : public FuncaoReal
@@ -53,6 +73,7 @@ namespace tnw
 
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+		virtual FuncaoRealP derivada() const;
 
 		std::string toString() const;
 
@@ -70,6 +91,7 @@ namespace tnw
 
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+		virtual FuncaoRealP derivada() const;
 
 		std::string toString() const;
 
@@ -110,6 +132,7 @@ namespace tnw
 
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+		virtual FuncaoRealP derivada() const;
 
 		std::string toString() const;
 		int getGrau() const;
@@ -131,6 +154,7 @@ namespace tnw
 
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+		virtual FuncaoRealP derivada() const;
 
 		std::string toString() const;
 		double getCoeficiente() const;
@@ -145,6 +169,7 @@ namespace tnw
 
 		double eval(double x) const;
 		double evalDerivada(double x) const;
+		virtual FuncaoRealP derivada() const;
 
 		std::string toString() const;
 

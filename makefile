@@ -11,7 +11,7 @@ default: clean all
 
 teste: clean bin/teste.o bin/funcoesReais.o bin/funcaoReal.o bin/polinomios.o bin/exponencial.o bin/identidade.o
 	$(CC) $(CFLAGS) -o bin/teste bin/teste.o bin/funcoesReais.o bin/funcaoReal.o bin/polinomios.o bin/exponencial.o bin/identidade.o
-	bin/teste
+	bin/teste | less
 
 bin/teste.o: src/teste.cpp src/funções/funcoesReais.h
 	$(CC) $(CFLAGS) -c src/teste.cpp -o bin/teste.o

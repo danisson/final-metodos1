@@ -10,6 +10,10 @@ double Identidade::evalDerivada(double x) const {
 	return 1;
 }
 
+FuncaoRealP Identidade::derivada() const {
+	return newFun(FuncaoConstante(1));
+}
+
 std::string Identidade::toString() const {
 	return "x";
 }

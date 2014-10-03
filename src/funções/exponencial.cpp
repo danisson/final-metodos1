@@ -13,6 +13,10 @@ double tnw::Exponencial::evalDerivada(double x) const{
 	return this->coeficiente * exp(x);
 }
 
+tnw::FuncaoRealP tnw::Exponencial::derivada() const {
+	return newFun(tnw::Exponencial(coeficiente));
+}
+
 std::string tnw::Exponencial::toString() const {
 	std::string aux;
 	if(coeficiente==1)
@@ -24,7 +28,7 @@ std::string tnw::Exponencial::toString() const {
 			aux.pop_back();
 		aux += "*";
 	}
-	return aux + "(e^x)";
+	return aux + "e^x";
 }
 
 // Construtores
