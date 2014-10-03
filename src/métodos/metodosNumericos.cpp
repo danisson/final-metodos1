@@ -27,3 +27,19 @@ intervalo tnw::bissec (tnw::intervalo a_b, FuncaoRealP f, double epsilon) {
 
 	return std::make_tuple(a,b);
 }
+
+//Função que calcula o valor com base no método do ponto fixo. A precisão, o valor inicial de chute e a função phi são passadas como parâmetro.
+double tnw::pontoFixo(double inicial, FuncaoRealP phi, double epsilon) {
+	
+	double prox,ant;
+
+	ant = inicial;
+	prox = phi->eval(ant);
+
+	while(std::abs(prox - ant) > epsilon){
+		ant = prox;
+		prox = phi->eval(ant);
+	}
+
+	return prox;
+}
