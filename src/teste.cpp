@@ -1,4 +1,4 @@
-#include "funções/funcoesReais.h"
+#include "funções/funcoes.h"
 #include <cstdio>
 #include <iostream>
 #include <memory>
