@@ -2,10 +2,10 @@
 #include <cmath>
 
 using namespace tnw;
+using namespace tnw::op;
 
 
 // Função de bissecção para calcular um bom interalo das raízes.
-
 intervalo tnw::bissec (tnw::intervalo a_b, FuncaoRealP f, double epsilon) {
 	double a, b, c, fc, fa;
 	std::tie(a,b) = a_b;
@@ -42,4 +42,8 @@ double tnw::pontoFixo(double inicial, FuncaoRealP phi, double epsilon) {
 	}
 
 	return prox;
+}
+
+double tnw::newton(double inicial, FuncaoRealP f, double epsilon) {
+	return pontoFixo(inicial,newFun(tnw::Identidade())-(f/f->derivada()),epsilon);
 }
