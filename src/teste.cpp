@@ -1,4 +1,5 @@
 #include "funções/funcoes.h"
+#include "métodos/metodosNumericos.h"
 #include <cstdio>
 #include <iostream>
 #include <memory>
@@ -12,6 +13,9 @@ int main(int argc, char const *argv[])
 
 	printf("Função f(x) = x²-3\n");
 	tnw::FuncaoRealP f = newFun(tnw::Polinomio({-3,0,1}));
+	tnw::intervalo a_b = std::make_tuple(0,2);
+	tnw::intervalo inter = tnw::bissec(a_b,f,0.001);
+	printf("Intervalo = %1f, %1f\n",std::get<0>(inter),std::get<1>(inter));
 
 	printf("f(1) = %lf\n", f->eval(1));
 	printf("f(2) = %lf\n", f->eval(2));
@@ -54,11 +58,27 @@ int main(int argc, char const *argv[])
 	printf("\nFunção f(x) = sin(x)\n");
 	f = newFun(tnw::FuncaoExistente(std::sin,"sin"));
 
+	a_b = std::make_tuple(3,4);
+	inter = tnw::bissec(a_b,f,0.001);
+	printf("Intervalo = %1f, %1f\n",std::get<0>(inter),std::get<1>(inter));
 	printf("f(2) = %lf\n",f->eval(2));
 	printf("f'(2) = %lf ~= -0.416147\n", f->evalDerivada(2));
 	printf("∫f(x) dx;[0,pi] = %lf ~= 2\n", f->evalIntegral(0,3.1416));
 	printf("f'(x) = %s\n", f->derivada()->toString().c_str());
 	printf("f(x) = %s\n", f->toString().c_str());
+
+
+	printf("\nFunção f(x) = x^3-9x+3\n");
+	f = newFun(tnw::Polinomio({3,-9,0,1}));
+	printf("f(0) = %lf\n", f->eval(0));
+
+	printf("Função phi(x) = (x^3)/9+(1/3)\n");	
+	tnw::FuncaoRealP phi = newFun(tnw::Polinomio({1/3.0,0,0,1/9.0}));
+	printf("phi(0) = %lf\n", phi->eval(0));
+
+	double result = tnw::pontoFixo(0.5, phi, 0.0005);
+	printf("Para f(x) = 0, temos x = %lf\n", result);
+	printf("f(x) = %lf\n",f->eval(result));
 
 	return 0;
 }
