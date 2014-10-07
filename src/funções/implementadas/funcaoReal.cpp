@@ -1,4 +1,4 @@
-#include "funcoesReais.h"
+#include "../funcoes.h"
 using namespace tnw;
 
 
