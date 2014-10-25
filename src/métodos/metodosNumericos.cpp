@@ -49,5 +49,8 @@ double tnw::newton(double inicial, FuncaoRealP f, double epsilon) {
 }
 
 double newtonModificado(double inicial, FuncaoRealP f, double epsilon) {
-	return pontoFixo(inicial,newFun(tnw::Identidade())-(f/newFun(tnw::FuncaoConstante(f->evalDerivada(inicial))),epsilon);
+	if (f->evalDerivada(inicial) == 0)
+		return pontoFixo(inicial,newFun(tnw::Identidade())-(f/newFun(tnw::FuncaoConstante(f->evalDerivada(inicial))),epsilon);
+	else
+		return NAN;
 }
