@@ -109,9 +109,10 @@ intervalo tnw::bissec (tnw::intervalo a_b, FuncaoRealP f, double epsilon) {
 }
 
 //Função que calcula o valor com base no método do ponto fixo. A precisão, o valor inicial de chute e a função phi são passadas como parâmetro.
-double tnw::pontoFixo(double inicial, FuncaoRealP phi, double epsilon) {
+tnw::outputMetodo tnw::pontoFixo(double inicial, FuncaoRealP phi, double epsilon) {
 	
 	double prox,ant;
+	long long qtdIter=1;
 
 	ant = inicial;
 	prox = phi->eval(ant);
@@ -119,18 +120,19 @@ double tnw::pontoFixo(double inicial, FuncaoRealP phi, double epsilon) {
 	while(std::abs(prox - ant) > epsilon){
 		ant = prox;
 		prox = phi->eval(ant);
+		++qtdIter;
 	}
 
-	return prox;
+	return tnw::outputMetodo(prox,qtdIter);
 }
 
-double tnw::newton(double inicial, FuncaoRealP f, double epsilon) {
+tnw::outputMetodo tnw::newton(double inicial, FuncaoRealP f, double epsilon) {
 	return pontoFixo(inicial,newFun(tnw::Identidade())-(f/f->derivada()),epsilon);
 }
 
-double newtonModificado(double inicial, FuncaoRealP f, double epsilon) {
+tnw::outputMetodo newtonModificado(double inicial, FuncaoRealP f, double epsilon) {
 	if (f->evalDerivada(inicial) == 0)
 		return pontoFixo(inicial,newFun(tnw::Identidade())-(f/newFun(tnw::FuncaoConstante(f->evalDerivada(inicial)))),epsilon);
 	else
-		return NAN;
+		return tnw::outputMetodo(NAN,0);
 }

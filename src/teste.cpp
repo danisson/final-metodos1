@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
 	tnw::intervalo a_b = std::make_tuple(0,2);
 	tnw::intervalo inter = tnw::bissec(a_b,f,0.001);
 	printf("Intervalo = %lf, %lf\n",std::get<0>(inter),std::get<1>(inter));
-	printf("Newton: x = %lf\n\n", tnw::newton(1,f,0.001));
+	printf("Newton: x = %lf em %lld passos\n\n", tnw::newton(1,f,0.001).x,tnw::newton(1,f,0.001).i);
 
 	printf("f(1) = %lf\n", f->eval(1));
 	printf("f(2) = %lf\n", f->eval(2));
@@ -77,9 +77,9 @@ int main(int argc, char const *argv[])
 	tnw::FuncaoRealP phi = newFun(tnw::Polinomio({1/3.0,0,0,1/9.0}));
 	printf("phi(0) = %lf\n", phi->eval(0));
 
-	double result = tnw::pontoFixo(0.5, phi, 0.0005);
-	printf("Para f(x) = 0, temos x = %lf\n", result);
-	printf("f(x) = %lf\n",f->eval(result));
+	auto result = tnw::pontoFixo(0.5, phi, 0.0005);
+	printf("Para f(x) = 0, temos x = %lf em %lld passos\n", result.x,result.i);
+	printf("f(x) = %lf\n",f->eval(result.x));
 
 	return 0;
 }
