@@ -7,8 +7,7 @@
 #include <string>
 
 namespace tnw {
-	void desenha_quadro(int n, std::vector<double> vetorP0, std::vector<tnw::FuncaoRealP> vetorFuncoes, double epsilon);
-	void gera_quadros();
+	void desenha_quadro(std::vector<double> vetorP0, double epsilon);
 	void gerarQuadroComparativo(std::vector<double> p0,double epsilon,std::string nomeArquivo);
 }
 #endif

@@ -5,29 +5,30 @@
 using namespace tnw::op;
 using namespace tnw;
 
-void tnw::desenha_quadro(int n, std::vector<double> vetorP0, double epsilon){
+void tnw::desenha_quadro(std::vector<double> vetorP0, double epsilon){
+	int n = vetorP0.size();
 	double x0,d,a,b;
 	tnw::FuncaoRealP f,phi;
 	tnw::FuncaoRealP raiz = newFun(tnw::FuncaoExistente(std::sqrt,"raiz"));
 	tnw::FuncaoRealP qd2 = newFun(tnw::Polinomio({0,0,4}));
 	
-	std::cout << center(" ",20)   
-			  << center("Ponto Fixo",20)
-			  << center("Newton-Raphson",20)
-			  << center("Newton-Raphson Modificado",20) << "\n\n"
+	std::cout << center(" ",20) << " | "
+			  << center("Ponto Fixo",20) << " | "
+			  << center("Newton-Raphson",20) << " | "
+			  << center("Newton Modificado",20) << " | \n"
 			  << center("p0",20) << " | "	  
 	          << center("d",20)  << " | "
 	          << center("d",20)  << " | "
-	          << center("d",20)  << " \n ";
+	          << center("d",20)  << " | \n ";
     	       
 
-	std::cout << std::string(20*4 + 3*4, '-') << "\n";
+	std::cout << std::string(20*4 + 3*4, '-');
 
 	for(int j=0; j<n; j++) {
 		//se aprimora um intervalo aleatório e 
-		f   = newFun(tnw::Exponencial(p0[i])) - qd2;
-		phi = compose(raiz,newFun(tnw::Exponencial(p0[i])))/2;
-		std::tie(a,b) = tnw::bissec (tnw::acharChuteInicialRandom(vetorFuncoes[j]), f, 0.001);
+		f   = newFun(tnw::Exponencial(vetorP0[j])) - qd2;
+		phi = compose(raiz,newFun(tnw::Exponencial(vetorP0[j])))/2;
+		std::tie(a,b) = tnw::bissec (tnw::acharChuteInicialRandom(f), f, 0.001);
 
 		x0 = a+b/2;
 		d = tnw::pontoFixo(x0, phi, epsilon).x;
@@ -36,39 +37,10 @@ void tnw::desenha_quadro(int n, std::vector<double> vetorP0, double epsilon){
     	d = tnw::newton(x0, f, epsilon).x;
     	std::cout << prd(d,4,20) 			<< " | ";
     	d = tnw::newtonModificado(x0, f, epsilon).x;
-    	std::cout << prd(d,4,20)			<< " \n";
+    	std::cout << prd(d,4,20);
 	}
+	std::cout << "\n";
 }
-
-
-
-void tnw::gera_quadros(){
-	double epsilon;
-
-	int n;
-	printf("Quantas particulas?\n");
-	scanf("%d",&n);
-	double p0;
-	std::vector<tnw::FuncaoRealP> vetorFuncoes(n,0);
-	std::vector<double> vetorP0(n,0);
-
-
-	printf("escreva os deslocamentos parciais (p0)\n");
-	for (int i=0; i<n; i++){
-		scanf ("%lf",&p0);
-		vetorP0[i] = p0;
-		vetorFuncoes[i] = (newFun(tnw::Exponencial(p0))-newFun(tnw::Polinomio({0,0,4})));
-	}
-	scanf("%lf",&epsilon);
-	desenha_quadro(n,vetorP0, vetorFuncoes, epsilon);
-	/*std::cout << center("Método do Ponto Fixo",20*6 + 3*6 + 1) << "\n\n"
-	desenha_quadro(vetorP0, vetorFuncoes, x0, phi, epsilon);
-	std::cout << center("Método de Newton-Raphson",20*6 + 3*6 + 1) << "\n\n"
-	desenha_quadro(vetorP0, vetorFuncoes, x0, newFun(tnw::Identidade())-(f/f->derivada()), epsilon);
-	std::cout << center("Método de Newton-Raphson Modificado",20*6 + 3*6 + 1) << "\n\n"
-	desenha_quadro(vetorP0, vetorFuncoes, x0, newFun(tnw::Identidade())-(f/f->derivada()), epsilon);*/
-}
-//:(
 
 void tnw::gerarQuadroComparativo(std::vector<double> p0,double epsilon,std::string nomeArquivo) {
 	tnw::FuncaoRealP f,phi;
