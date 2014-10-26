@@ -4,17 +4,6 @@
 *.o
 *.obj
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
 # Executables
 *.exe
 *.out
@@ -23,6 +12,8 @@ bin/*
 
 #Log de Compilação
 log
+teste.txt
+*.csv
 
 # workspace files are user-specific
 *.sublime-workspace
