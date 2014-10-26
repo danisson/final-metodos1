@@ -3,10 +3,9 @@
 #include "../funções/funcoes.h"
 #include "../métodos/metodosNumericos.h"
 #include "../auxiliar/tabela.h"
-#include <vector>
-
+#include <cmath>
 namespace tnw {
-	void desenha_quadro();
+	void desenha_quadro(int n, std::vector<double> vetorP0, std::vector<tnw::FuncaoRealP> vetorFuncoes, double epsilon);
 	void gera_quadros();
 }
 #endif
