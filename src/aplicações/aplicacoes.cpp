@@ -1,6 +1,7 @@
 #include "aplicacoes.h"
 #include <cstdio>
 #include <cmath>
+#include <cfloat>
 
 using namespace tnw::op;
 using namespace tnw;
@@ -76,14 +77,11 @@ void tnw::gerarQuadroComparativo(std::vector<double> p0,double epsilon,std::stri
 		saidas[2] = tnw::pontoFixo(x0,phi,epsilon);
 
 		std::fprintf(arquivo,
-		"%lf,%lf,%lf,%s,",
-		p0[i],std::get<0>(a_b),std::get<1>(a_b),phi->toString().c_str());
+		"%.*lf,%.*lf,%.*lf,%s,",
+		LDBL_DIG,p0[i],LDBL_DIG,std::get<0>(a_b),LDBL_DIG,std::get<1>(a_b),phi->toString().c_str());
 
 		for (int j = 0; j < 3; ++j)
-		{
-			if(j==2) std::fprintf(arquivo,"%lf,%le,%lld,", saidas[j].x,f->eval(saidas[j].x),saidas[j].i);
-			else     std::fprintf(arquivo,"%lf,%le,%lld,", saidas[j].x,f->eval(saidas[j].x),saidas[j].i);
-		}
+			std::fprintf(arquivo,"%.*lf,%.*le,%lld,",LDBL_DIG,saidas[j].x,LDBL_DIG,f->eval(saidas[j].x),saidas[j].i);
 		std::fprintf(arquivo,"\n");
 	}
 	std::fclose(arquivo);

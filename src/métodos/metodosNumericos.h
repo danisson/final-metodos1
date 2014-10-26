@@ -2,6 +2,7 @@
 #include <tuple>
 
 namespace tnw {
+	const double kTempoLimite = 5.0;
 	typedef std::tuple<double,double> intervalo;
 	struct outputMetodo
 	{

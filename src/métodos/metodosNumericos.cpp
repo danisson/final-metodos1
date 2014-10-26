@@ -38,7 +38,7 @@ tnw::intervalo tnw::acharChuteInicial(FuncaoRealP f) {
 			return std::make_tuple(min,max);
 		}
 
-		if (secs > 2.0)
+		if (secs > kTempoLimite)
 			break;
 	}
 	printf("err: Tempo Limite de Achar Raíz Excedido\n");
@@ -78,10 +78,10 @@ tnw::intervalo tnw::acharChuteInicialRandom(FuncaoRealP f) {
 
 		t1 = get_timestamp();
 		secs = (t1 - t0) / 1000000.0L;
-		if (secs > 2.0)
+		if (secs > kTempoLimite)
 			break;
 	}
-	printf("err: Tempo Limite de Achar Raíz Excedido\n");
+	printf("\nerr: Tempo Limite de Achar Raíz Excedido\n");
 	return std::make_tuple(NAN,NAN);
 }
 
@@ -89,6 +89,8 @@ tnw::intervalo tnw::acharChuteInicialRandom(FuncaoRealP f) {
 intervalo tnw::bissec (tnw::intervalo a_b, FuncaoRealP f, double epsilon) {
 	double a, b, c, fc, fa;
 	std::tie(a,b) = a_b;
+	timestamp_t t0 = get_timestamp(),t1;
+	double secs=0;
 	
 	while (std::abs(a-b) > epsilon) {
 		c = 0.5*(a+b);
@@ -103,6 +105,14 @@ intervalo tnw::bissec (tnw::intervalo a_b, FuncaoRealP f, double epsilon) {
 			a = c-epsilon;
 			b = c+epsilon;
 		}
+
+		t1 = get_timestamp();
+		secs = (t1 - t0) / 1000000.0L;
+		if (secs > kTempoLimite)
+		{
+			printf("\nerr: Tempo Limite de bissec\n");
+			return std::make_tuple(a,b);
+		}
 	}
 
 	return std::make_tuple(a,b);
@@ -114,6 +124,8 @@ tnw::outputMetodo tnw::pontoFixo(double inicial, FuncaoRealP phi, double epsilon
 	// printf("%s\n", phi->toString().c_str());
 	double prox,ant;
 	long long qtdIter=1;
+	timestamp_t t0 = get_timestamp(),t1;
+	double secs=0;
 
 	ant = inicial;
 	prox = phi->eval(ant);
@@ -123,6 +135,13 @@ tnw::outputMetodo tnw::pontoFixo(double inicial, FuncaoRealP phi, double epsilon
 		ant = prox;
 		prox = phi->eval(ant);
 		++qtdIter;
+		t1 = get_timestamp();
+		secs = (t1 - t0) / 1000000.0L;
+		if (secs > kTempoLimite)
+		{
+			printf("\nerr: Tempo Limite de pontoFixo\n");
+			return tnw::outputMetodo(prox,qtdIter);
+		}
 	}
 
 
