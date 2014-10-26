@@ -1,9 +1,9 @@
-#include "auxiliar.h"
+#include "tabela.h"
 
 
 /* Convert double to string with specified number of places after the decimal
    and left padding. */
-std::string prd(const double x, const int decDigits, const int width) {
+std::string tnw::prd(const double x, const int decDigits, const int width) {
     stringstream ss;
     ss << fixed << right;
     ss.fill(' ');        // fill space around displayed #
@@ -15,7 +15,7 @@ std::string prd(const double x, const int decDigits, const int width) {
 
 /*! Center-aligns string within a field of width w. Pads with blank spaces
     to enforce alignment. */
-std::string center(const string s, const int w) {
+std::string tnw::center(const string s, const int w) {
     stringstream ss, spaces;
     int padding = w - s.size();                 // count excess room to pad
     for(int i=0; i<padding/2; ++i)

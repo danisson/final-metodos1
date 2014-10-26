@@ -2,7 +2,8 @@
 
 using namespace tnw::op;
 using namespace tnw;
-void desenha_quadro()
+
+void tnw::desenha_quadro()
 {
 	std::cout << center("p0",20)       << " | "
 			  << center("x0",20)       << " | "			  
@@ -26,7 +27,7 @@ void desenha_quadro()
 
 
 
-void gera_quadro(){
+void tnw::gera_quadros(){
 	/*double x0, epsilon;
 	FuncaoRealP phi;*/
 
