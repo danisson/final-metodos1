@@ -24,6 +24,7 @@ bin/*
 #Log de Compilação
 log
 teste.txt
+*.csv
 
 # workspace files are user-specific
 *.sublime-workspace
