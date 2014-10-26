@@ -10,6 +10,7 @@ void tnw::desenha_quadro(std::vector<double> vetorP0, double epsilon){
 	double x0,d,a,b;
 	tnw::FuncaoRealP f,phi;
 	tnw::FuncaoRealP raiz = newFun(tnw::FuncaoExistente(std::sqrt,"raiz"));
+	tnw::FuncaoRealP log = newFun(tnw::FuncaoExistente(std::log,"log"));
 	tnw::FuncaoRealP qd2 = newFun(tnw::Polinomio({0,0,4}));
 	
 	std::cout << center(" ",20) << " | "
@@ -27,7 +28,7 @@ void tnw::desenha_quadro(std::vector<double> vetorP0, double epsilon){
 	for(int j=0; j<n; j++) {
 		//se aprimora um intervalo aleatório e 
 		f   = newFun(tnw::Exponencial(vetorP0[j])) - qd2;
-		phi = compose(raiz,newFun(tnw::Exponencial(vetorP0[j])))/2;
+		phi = compose(log,qd2/vetorP0[j]);
 		std::tie(a,b) = tnw::bissec (tnw::acharChuteInicialRandom(f), f, 0.001);
 
 		x0 = a+b/2;
@@ -45,6 +46,7 @@ void tnw::desenha_quadro(std::vector<double> vetorP0, double epsilon){
 void tnw::gerarQuadroComparativo(std::vector<double> p0,double epsilon,std::string nomeArquivo) {
 	tnw::FuncaoRealP f,phi;
 	tnw::FuncaoRealP raiz = newFun(tnw::FuncaoExistente(std::sqrt,"raiz"));
+	tnw::FuncaoRealP log = newFun(tnw::FuncaoExistente(std::log,"log"));
 	tnw::FuncaoRealP qd2 = newFun(tnw::Polinomio({0,0,4}));
 
 	tnw::outputMetodo saidas[3] = {tnw::outputMetodo(0,0),tnw::outputMetodo(0,0),tnw::outputMetodo(0,0)};
@@ -65,7 +67,7 @@ void tnw::gerarQuadroComparativo(std::vector<double> p0,double epsilon,std::stri
 	for (unsigned i = 0; i < p0.size(); ++i)
 	{
 		f   = newFun(tnw::Exponencial(p0[i])) - qd2;
-		phi = compose(raiz,newFun(tnw::Exponencial(p0[i])))/2;
+		phi = compose(log,qd2/p0[i]);
 		a_b = tnw::bissec(tnw::acharChuteInicialRandom(f),f,0.001);
 		x0  = (std::get<0>(a_b)+std::get<1>(a_b))/2.0;
 
