@@ -12,5 +12,6 @@
 			"path": ".",
 			"name": "Pasta do Projeto"
 		}
-	]
+	],
+	"default_line_ending": "unix"
 }
