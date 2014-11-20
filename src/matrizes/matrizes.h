@@ -2,6 +2,8 @@
 #define MATRIZES_H
 #include <vector>
 #include <string>
+#include <tuple>
+
 namespace tnw
 {
 	class MatrizQuadrada
@@ -12,6 +14,8 @@ namespace tnw
 	public:
 		double operator()(unsigned i, unsigned j) const;
 		double& operator()(unsigned i, unsigned j);
+
+		std::tuple<MatrizQuadrada,MatrizQuadrada> DR() const;
 
 		std::string toString() const;
 
