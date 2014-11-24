@@ -48,10 +48,14 @@ namespace tnw
 	MatrizQuadrada identidade(unsigned tamanho);
 }
 
-tnw::Vetor operator* (const tnw::MatrizQuadrada& m,const tnw::Vetor& v);
 tnw::MatrizQuadrada operator* (const tnw::MatrizQuadrada& e,const tnw::MatrizQuadrada& d);
-
+tnw::MatrizQuadrada operator+ (const tnw::MatrizQuadrada& e,const tnw::MatrizQuadrada& d);
+tnw::MatrizQuadrada operator- (const tnw::MatrizQuadrada& e,const tnw::MatrizQuadrada& d);
 bool operator==(const tnw::MatrizQuadrada& e,const tnw::MatrizQuadrada& d);
+
+tnw::Vetor operator* (const tnw::MatrizQuadrada& m,const tnw::Vetor& v);
+tnw::Vetor operator+ (const tnw::Vetor& e,const tnw::Vetor& d);
+tnw::Vetor operator- (const tnw::Vetor& e,const tnw::Vetor& d);
 bool operator==(const tnw::Vetor& e,const tnw::Vetor& d);
 
 #endif
