@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <string>
 #include "matrizes/matrizes.h"
+#include "métodos/metodosNumericos.h"
 #define max(a,b) a>b?a:b
 
 void testeUm() {
@@ -40,6 +41,30 @@ void testeDois() {
 	printf("%s\n",m.toString().c_str());
 }
 
+void testeTres(){
+	tnw::MatrizQuadrada m = {{5,3,1},{5,6,1},{1,6,7}};
+	printf("Matriz considerada\n");
+	printf("%s\n", m.toString().c_str());
+
+	double erro = 0.0001;
+	tnw::MatrizQuadrada i = tnw::inverterJacobi(m, erro);
+	printf("Matriz invertida por Jacobi com erro %f:\n", erro);
+	printf("%s\n",i.toString().c_str());
+
+	tnw::MatrizQuadrada mi = m*i;
+	printf("Matriz inicial vezes Jacobi inversa\n");
+	printf("%s\n", mi.toString().c_str());
+
+	tnw::MatrizQuadrada j = tnw::inverterSeidel(m, erro);
+	printf("Matriz invertida por Seidel com erro %f:\n", erro);
+	printf("%s\n",j.toString().c_str());
+
+	tnw::MatrizQuadrada mj = m*j;
+	printf("Matriz inicial vezes Seidel inversa\n");
+	printf("%s\n", mj.toString().c_str());
+
+}
+
 int main(int argc, char const *argv[])
 {
 	if(argc <= 1){printf("Err: Insira o número do teste\n"); return 1;}
@@ -51,6 +76,8 @@ int main(int argc, char const *argv[])
 		case 2:
 			testeDois();
 			break;
+		case 3:
+			testeTres();
 		default:
 			return 0;
 	}

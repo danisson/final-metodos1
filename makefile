@@ -12,8 +12,8 @@ default: clean main
 main: bin/main.o bin/aplicacoes.o bin/tabela.o bin/metodosNumericos.o bin/tempo.o lib/libfuncoes.a
 	$(CC) $(CFLAGS) -o bin/trabalho2 bin/main.o bin/tabela.o bin/aplicacoes.o  bin/metodosNumericos.o bin/tempo.o -lfuncoes
 
-testeMatriz: lib/libmatriz.a
-	$(CC) $(CFLAGS) src/testeMatriz.cpp -o bin/testeMatriz -lmatriz
+testeMatriz: lib/libmatriz.a bin/metodosNumericos.o 
+	$(CC) $(CFLAGS) src/testeMatriz.cpp bin/metodosNumericos.o -o bin/testeMatriz -lmatriz
 
 lib/libfuncoes.a:
 	$(CC) $(CFLAGS) -c src/funções/implementadas/exponencial.cpp -o bin/exponencial.o
@@ -32,6 +32,9 @@ lib/libmatriz.a: src/matrizes/matriz.cpp src/matrizes/vetor.cpp src/matrizes/ope
 	ar rvs lib/libmatriz.a bin/operadores.o bin/vetor.o bin/matriz.o
 	rm bin/matriz.o bin/vetor.o bin/operadores.o
 
+bin/metodosNumericos.o: src/métodos/metodosNumericos.cpp
+	$(CC) $(CFLAGS) -c src/métodos/metodosNumericos.cpp -o bin/metodosNumericos.o
+	
 bin/tempo.o: src/auxiliar/tempo.cpp
 	$(CC) $(CFLAGS) -c src/auxiliar/tempo.cpp -o bin/tempo.o
 

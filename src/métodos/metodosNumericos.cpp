@@ -1,163 +1,102 @@
 #include "metodosNumericos.h"
-#include "../auxiliar/tempo.h"
+#include <stdexcept>
 #include <cmath>
-#include <algorithm>
-#include <random>
+#include <vector>
 
 using namespace tnw;
-using namespace tnw::op;
 
+Vetor tnw::jacobi(const MatrizQuadrada &a, const Vetor &b, double epsilon){
+	if (a.getTamanho() != b.getTamanho()) throw std::domain_error("Matrizes de dimensão errada");
+	unsigned n = a.getTamanho();
+	Vetor xAtual(n);
+	Vetor xAnterior(n);
+	double soma;
 
-tnw::intervalo tnw::acharChuteInicial(FuncaoRealP f) {
-	long long areaDeBusca = 10000;
-	double epsilon = 1.0;
-	double intervalo[] = {NAN,NAN};
-
-	timestamp_t t0 = get_timestamp(),t1;
-	double secs = 0;
-	for (int limite = 0; true; ++limite)
-	{
-		for (double i = -areaDeBusca; i < areaDeBusca; i=i+epsilon)
-		{
-			if(f->eval(i) > 0)
-				intervalo[0] = i;
-			if(f->eval(i) < 0)
-				intervalo[1] = i;
-			if(f->eval(i) == 0)
-				return std::make_tuple(i,i);
+	while(!parada(xAtual, xAnterior, epsilon)){
+		xAnterior = xAtual;
+		for (unsigned i=0; i<n; i++){
+			soma = 0;
+			for (unsigned j=0; j<n; j++)
+				if (i!=j) 
+					soma += a(i,j)*xAnterior(j);
+			xAtual(i) = (b(i)-soma)/a(i,i); 
 		}
-		t1 = get_timestamp();
-		secs = (t1 - t0) / 1000000.0L;
-
-		if (std::isnan(intervalo[0]) || std::isnan(intervalo[1]))
-		{
-			areaDeBusca *= 10;
-		}
-		else {
-			double min = std::min(intervalo[0],intervalo[1]), max = std::max(intervalo[0],intervalo[1]);
-			return std::make_tuple(min,max);
-		}
-
-		if (secs > kTempoLimite)
-			break;
 	}
-	printf("err: Tempo Limite de Achar Raíz Excedido\n");
-	return std::make_tuple(NAN,NAN);
+
+	return xAtual;
 }
 
-tnw::intervalo tnw::acharChuteInicialRandom(FuncaoRealP f) {
-	long long areaDeBusca = 10000;
-	double intervalo[] = {NAN,NAN};
-	double i;
+Vetor tnw::seidel(const MatrizQuadrada &a, const Vetor &b, double epsilon){
+	if (a.getTamanho() != b.getTamanho()) throw std::domain_error("Matrizes de dimensão errada");
+	unsigned n = a.getTamanho();
+	Vetor xAtual(n);
+	Vetor xAnterior(n);
+	double soma;
 
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_real_distribution<> dis(-areaDeBusca, areaDeBusca);
-
-	timestamp_t t0 = get_timestamp(),t1;
-	double secs = 0;
-	for (int limite = 0; true; ++limite)
-	{
-		i = dis(gen);
-		if(f->eval(i) > 0)
-			intervalo[0] = i;
-		if(f->eval(i) < 0)
-			intervalo[1] = i;
-		if(f->eval(i) == 0)
-			return std::make_tuple(i,i);
-
-		if(limite%100==0) {
-			areaDeBusca*=10;
-			dis = std::uniform_real_distribution<>(-areaDeBusca, areaDeBusca);
+	while(!parada(xAtual, xAnterior, epsilon)){
+		xAnterior = xAtual;
+		for (unsigned i=0; i<n; i++){
+			soma = 0;
+			for (unsigned j=0; j<n; j++){
+				if (i!=j){
+					if (j<i){
+						soma += a(i,j)*xAtual(j);
+					} else {
+						soma += a(i,j)*xAnterior(j);
+					}
+				}
+			}
+			xAtual(i) = (b(i)-soma)/a(i,i);
 		}
-
-		if (!std::isnan(intervalo[0]) && !std::isnan(intervalo[1])) {
-			double min = std::min(intervalo[0],intervalo[1]), max = std::max(intervalo[0],intervalo[1]);
-			return std::make_tuple(min,max);
-		}
-
-		t1 = get_timestamp();
-		secs = (t1 - t0) / 1000000.0L;
-		if (secs > kTempoLimite)
-			break;
 	}
-	printf("\nerr: Tempo Limite de Achar Raíz Excedido\n");
-	return std::make_tuple(NAN,NAN);
+	return xAtual;
 }
 
-// Função de bissecção para calcular um bom intervalo das raízes.
-intervalo tnw::bissec (tnw::intervalo a_b, FuncaoRealP f, double epsilon) {
-	double a, b, c, fc, fa;
-	std::tie(a,b) = a_b;
-	timestamp_t t0 = get_timestamp(),t1;
-	double secs=0;
+bool tnw::parada(const Vetor &atual,const Vetor &anterior, double epsilon){
+	if (atual.getTamanho() != anterior.getTamanho()) throw std::domain_error("Matrizes de dimensão errada");
+	unsigned n = atual.getTamanho();
+
+	double maxDiff = 0;
+	double atualDiff;
+	double maxValue = 0;
+	double atualValue;
+
+	for (unsigned i=0; i<n; i++){
+		atualDiff = std::abs(atual(i)-anterior(i));
+		atualValue = std::abs(atual(i));
+		if (atualDiff > maxDiff)
+			maxDiff = atualDiff;
+		if (atualValue > maxValue)
+			maxValue = atualValue;
+	}
 	
-	while (std::abs(a-b) > epsilon) {
-		c = 0.5*(a+b);
-		fc = (f->eval(c));
-		fa = (f->eval(a));
+	return (maxDiff/maxValue) <= epsilon;
+}
 
-		if (fc*fa > 0)
-			a = c;
-		else if (fc*fa < 0)
-			b = c;
-		else {
-			a = c-epsilon;
-			b = c+epsilon;
-		}
+MatrizQuadrada tnw::inverterJacobi(MatrizQuadrada m, double epsilon){
+	unsigned n = m.getTamanho();
+	std::vector<Vetor> v;
 
-		t1 = get_timestamp();
-		secs = (t1 - t0) / 1000000.0L;
-		if (secs > kTempoLimite)
-		{
-			printf("\nerr: Tempo Limite de bissec\n");
-			return std::make_tuple(a,b);
-		}
+	for (unsigned i=0; i<n; i++){
+		Vetor c(n);
+		c(i) = 1;
+		v.push_back(jacobi(m, c, epsilon));
 	}
 
-	return std::make_tuple(a,b);
+	MatrizQuadrada res(v);
+	return res;
 }
 
-//Função que calcula o valor com base no método do ponto fixo. A precisão, o valor inicial de chute e a função phi são passadas como parâmetro.
-tnw::outputMetodo tnw::pontoFixo(double inicial, FuncaoRealP phi, double epsilon) {
-	
-	// printf("%s\n", phi->toString().c_str());
-	double prox,ant;
-	long long qtdIter=1;
-	timestamp_t t0 = get_timestamp(),t1;
-	double secs=0;
+MatrizQuadrada tnw::inverterSeidel(MatrizQuadrada m, double epsilon){
+	unsigned n = m.getTamanho();
+	std::vector<Vetor> v;
 
-	ant = inicial;
-	prox = phi->eval(ant);
-
-	while(std::abs(prox - ant) > epsilon){
-		// printf("%lf %lf\n", ant,prox);
-		ant = prox;
-		prox = phi->eval(ant);
-		++qtdIter;
-		t1 = get_timestamp();
-		secs = (t1 - t0) / 1000000.0L;
-		if (secs > kTempoLimite)
-		{
-			printf("\nerr: Tempo Limite de pontoFixo\n");
-			return tnw::outputMetodo(prox,qtdIter);
-		}
+	for (unsigned i=0; i<n; i++){
+		Vetor c(n);
+		c(i) = 1;
+		v.push_back(seidel(m, c, epsilon));
 	}
 
-
-	// printf("%lf %lld\n **** \n", prox,qtdIter);
-	return tnw::outputMetodo(prox,qtdIter);
-}
-
-tnw::outputMetodo tnw::newton(double inicial, FuncaoRealP f, double epsilon) {
-	return pontoFixo(inicial,newFun(tnw::Identidade())-(f/f->derivada()),epsilon);
-}
-
-
-
-tnw::outputMetodo tnw::newtonModificado(double inicial, FuncaoRealP f, double epsilon) {
-	if (f->evalDerivada(inicial) != 0)
-		return pontoFixo(inicial,newFun(tnw::Identidade())-(f/f->evalDerivada(inicial)),epsilon);
-	else
-		return tnw::outputMetodo(NAN,-1);
-}
+	MatrizQuadrada res(v);
+	return res;
+}  
