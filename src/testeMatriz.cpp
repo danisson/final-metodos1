@@ -101,8 +101,10 @@ int main(int argc, char const *argv[])
 			break;
 		case 3:
 			testeTres();
+			break;
 		case 4:
 			testeQuatro();
+			break;
 		default:
 			return 0;
 	}

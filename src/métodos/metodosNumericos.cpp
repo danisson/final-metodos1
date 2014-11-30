@@ -1,4 +1,5 @@
 #include "metodosNumericos.h"
+#include "../auxiliar/tempo.h"
 #include <stdexcept>
 #include <cmath>
 #include <vector>
@@ -7,10 +8,14 @@ using namespace tnw;
 
 Vetor tnw::jacobi(const MatrizQuadrada &a, const Vetor &b, double epsilon){
 	if (a.getTamanho() != b.getTamanho()) throw std::domain_error("Matrizes de dimensão errada");
+
 	unsigned n = a.getTamanho();
 	Vetor xAtual(n);
 	Vetor xAnterior(n);
 	double soma;
+
+	timestamp_t t0 = get_timestamp(),t1;
+	double secs=0;
 
 	while(!parada(xAtual, xAnterior, epsilon)){
 		xAnterior = xAtual;
@@ -21,6 +26,11 @@ Vetor tnw::jacobi(const MatrizQuadrada &a, const Vetor &b, double epsilon){
 					soma += a(i,j)*xAnterior(j);
 			xAtual(i) = (b(i)-soma)/a(i,i); 
 		}
+
+		t1 = get_timestamp();
+		secs = (t1 - t0) / 1000000.0L;
+		if (secs > kTempoLimite)
+			printf("err: Tempo Limite Excedido\n");break;
 	}
 
 	return xAtual;
@@ -32,6 +42,9 @@ Vetor tnw::seidel(const MatrizQuadrada &a, const Vetor &b, double epsilon){
 	Vetor xAtual(n);
 	Vetor xAnterior(n);
 	double soma;
+
+	timestamp_t t0 = get_timestamp(),t1;
+	double secs=0;
 
 	while(!parada(xAtual, xAnterior, epsilon)){
 		xAnterior = xAtual;
@@ -48,7 +61,13 @@ Vetor tnw::seidel(const MatrizQuadrada &a, const Vetor &b, double epsilon){
 			}
 			xAtual(i) = (b(i)-soma)/a(i,i);
 		}
+		
+		t1 = get_timestamp();
+		secs = (t1 - t0) / 1000000.0L;
+		if (secs > kTempoLimite)
+			printf("err: Tempo Limite Excedido\n");break;
 	}
+
 	return xAtual;
 }
 

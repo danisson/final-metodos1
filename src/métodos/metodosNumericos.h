@@ -3,6 +3,7 @@
 #include "../matrizes/matrizes.h"
 
 namespace tnw {
+	const double kTempoLimite = 5.0;
 	Vetor jacobi(const MatrizQuadrada &a, const Vetor &b, double epsilon);
 	Vetor seidel(const MatrizQuadrada &a, const Vetor &b, double epsilon);
 	MatrizQuadrada inverterJacobi(MatrizQuadrada m, double epsilon);

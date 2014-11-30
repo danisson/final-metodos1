@@ -25,11 +25,11 @@ lib/libfuncoes.a:
 	ar rvs lib/libfuncoes.a bin/exponencial.o bin/funcaoReal.o bin/funcoesReais.o bin/identidade.o bin/polinomios.o bin/operadores.o
 	rm bin/exponencial.o bin/funcaoReal.o bin/funcoesReais.o bin/identidade.o bin/polinomios.o bin/operadores.o
 
-lib/libmatriz.a: src/matrizes/matriz.cpp src/matrizes/vetor.cpp src/matrizes/operadores.cpp
+lib/libmatriz.a: src/matrizes/matrizes.h src/matrizes/matriz.cpp src/matrizes/vetor.cpp src/matrizes/operadores.cpp bin/tempo.o
 	$(CC) $(CFLAGS) -c src/matrizes/matriz.cpp -o bin/matriz.o
 	$(CC) $(CFLAGS) -c src/matrizes/vetor.cpp -o bin/vetor.o
 	$(CC) $(CFLAGS) -c src/matrizes/operadores.cpp -o bin/operadores.o
-	ar rvs lib/libmatriz.a bin/operadores.o bin/vetor.o bin/matriz.o
+	ar rvs lib/libmatriz.a bin/operadores.o bin/vetor.o bin/matriz.o bin/tempo.o
 	rm bin/matriz.o bin/vetor.o bin/operadores.o
 
 bin/metodosNumericos.o: src/métodos/metodosNumericos.cpp
