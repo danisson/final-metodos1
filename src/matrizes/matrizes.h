@@ -18,6 +18,7 @@ namespace tnw
 		unsigned getTamanho() const;
 
 		std::string toString() const;
+		std::string toJSON() const;
 
 		Vetor(unsigned n);
 		Vetor(std::initializer_list<double> v);
@@ -38,6 +39,7 @@ namespace tnw
 		int testeSassenfeld() const;
 
 		std::string toString() const;
+		std::string toJSON() const;
 
 		MatrizQuadrada(unsigned n);
 		MatrizQuadrada(std::initializer_list<std::initializer_list<double>> m);

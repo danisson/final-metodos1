@@ -85,7 +85,19 @@ void testeQuatro(){
 	printf("Esta matriz %spassou no critério de Sassenfeld\n", m.testeSassenfeld()==-1?"":"não ");
 	if (m.testeSassenfeld()!=-1)
 		printf("E a testemunha é a linha %d\n", m.testeSassenfeld());
+}
 
+void testeCinco(){
+	tnw::MatrizQuadrada m = {{2,1,3},{0,-1,1},{1,0,3}};
+	printf("Matriz considerada\n");
+	printf("%s\n", m.toString().c_str());
+	printf("JSON:\n%s\n", m.toJSON().c_str());
+
+	tnw::Vetor v(4);
+	v(1)=1;
+	printf("Vetor considerado\n");
+	printf("%s\n",v.toString().c_str());
+	printf("JSON:\n%s\n", v.toJSON().c_str());
 }
 
 int main(int argc, char const *argv[])
@@ -104,6 +116,9 @@ int main(int argc, char const *argv[])
 			break;
 		case 4:
 			testeQuatro();
+			break;
+		case 5:
+			testeCinco();
 			break;
 		default:
 			return 0;

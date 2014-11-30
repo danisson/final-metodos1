@@ -1,5 +1,9 @@
 #include "matrizes.h"
 #include <stdexcept>
+#include <limits>
+#include <sstream>
+#include <ios>
+
 #define eu(i,j) m[i*tamanho + j]
 
 using std::tuple;
@@ -81,6 +85,25 @@ std::string MatrizQuadrada::toString() const {
 		output += "|\n";
 	}
 	return output;
+}
+
+std::string MatrizQuadrada::toJSON() const {
+	std::stringstream output;
+	output.precision(std::numeric_limits<double>::digits10+1);
+	output << "[";
+	for (unsigned i = 0; i < tamanho; ++i)
+	{
+		output << "[";
+		for (unsigned j = 0; j < tamanho; ++j)
+		{
+			output << std::fixed << eu(i,j);
+			if (j<tamanho-1) output << ",";
+		}
+		output << "]";
+		if (i<tamanho-1) output << ",";
+	}
+	output << "]";
+	return output.str();
 }
 
 MatrizQuadrada::MatrizQuadrada(unsigned n) {

@@ -38,5 +38,8 @@ bin/metodosNumericos.o: src/métodos/metodosNumericos.cpp
 bin/tempo.o: src/auxiliar/tempo.cpp
 	$(CC) $(CFLAGS) -c src/auxiliar/tempo.cpp -o bin/tempo.o
 
+bin/gerarCSV.o: src/auxiliar/gerarCSV.cpp
+	$(CC) $(CFLAGS) -c src/auxiliar/gerarCSV.cpp -o bin/gerarCSV.o
+
 clean:
 	-rm -f bin/*

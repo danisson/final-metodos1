@@ -1,5 +1,8 @@
 #include "matrizes.h"
 #include <stdexcept>
+#include <limits>
+#include <sstream>
+#include <ios>
 
 double tnw::Vetor::operator()(unsigned i) const {
 	if (i < tamanho)
@@ -28,6 +31,19 @@ std::string tnw::Vetor::toString() const {
 		output += "|\n";
 	}
 	return output;
+}
+
+std::string tnw::Vetor::toJSON() const {
+	std::stringstream output;
+	output.precision(std::numeric_limits<double>::digits10+1);
+	output << "[";
+	for (unsigned i = 0; i < tamanho; ++i)
+	{
+		output << std::fixed << v[i];
+		if (i<tamanho-1) output << ",";
+	}
+	output << "]";
+	return output.str();
 }
 
 tnw::Vetor::Vetor(unsigned n) {
