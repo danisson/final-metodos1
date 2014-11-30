@@ -46,9 +46,9 @@ void testeTres(){
 	printf("Matriz considerada\n");
 	printf("%s\n", m.toString().c_str());
 
-	double erro = 0.0001;
+	double erro = 0.0000001;
 	tnw::MatrizQuadrada i = tnw::inverterJacobi(m, erro);
-	printf("Matriz invertida por Jacobi com erro %f:\n", erro);
+	printf("Matriz invertida por Jacobi com erro %le:\n", erro);
 	printf("%s\n",i.toString().c_str());
 
 	tnw::MatrizQuadrada mi = m*i;
@@ -56,12 +56,35 @@ void testeTres(){
 	printf("%s\n", mi.toString().c_str());
 
 	tnw::MatrizQuadrada j = tnw::inverterSeidel(m, erro);
-	printf("Matriz invertida por Seidel com erro %f:\n", erro);
+	printf("Matriz invertida por Seidel com erro %le:\n", erro);
 	printf("%s\n",j.toString().c_str());
 
 	tnw::MatrizQuadrada mj = m*j;
 	printf("Matriz inicial vezes Seidel inversa\n");
 	printf("%s\n", mj.toString().c_str());
+
+}
+
+void testeQuatro(){
+	tnw::MatrizQuadrada m = {{2,1,3},{0,-1,1},{1,0,3}};
+	printf("Matriz considerada\n");
+	printf("%s\n", m.toString().c_str());
+	printf("Esta matriz %spassou no critério das linhas\n", m.testeLinhas()==-1?"":"não ");
+	if (m.testeLinhas()!=-1)
+		printf("E a testemunha é a linha %d\n", m.testeLinhas());
+	printf("Esta matriz %spassou no critério de Sassenfeld\n", m.testeSassenfeld()==-1?"":"não ");
+	if (m.testeSassenfeld()!=-1)
+		printf("E a testemunha é a linha %d\n", m.testeSassenfeld());
+	printf("\n");
+	m = {{3,0,1},{3,-1,0},{3,1,2}};
+	printf("Matriz considerada\n");
+	printf("%s\n", m.toString().c_str());
+	printf("Esta matriz %spassou no critério das linhas\n", m.testeLinhas()==-1?"":"não ");
+	if (m.testeLinhas()!=-1)
+		printf("E a testemunha é a linha %d\n", m.testeLinhas());
+	printf("Esta matriz %spassou no critério de Sassenfeld\n", m.testeSassenfeld()==-1?"":"não ");
+	if (m.testeSassenfeld()!=-1)
+		printf("E a testemunha é a linha %d\n", m.testeSassenfeld());
 
 }
 
@@ -78,6 +101,8 @@ int main(int argc, char const *argv[])
 			break;
 		case 3:
 			testeTres();
+		case 4:
+			testeQuatro();
 		default:
 			return 0;
 	}

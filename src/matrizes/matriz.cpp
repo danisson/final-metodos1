@@ -34,6 +34,38 @@ tuple<MatrizQuadrada,MatrizQuadrada> MatrizQuadrada::DR() const {
 	return make_tuple(d,r);
 }
 
+int MatrizQuadrada::testeLinhas() const {
+	double alfa;
+	for (unsigned i = 0; i < tamanho; ++i)
+	{
+		alfa=0;
+		for (unsigned j = 0; j < tamanho; ++j)
+			if (j!=i) alfa += eu(i,j)/eu(i,i);
+		if (alfa >= 1) return i;
+	}
+	return -1;
+}
+
+int MatrizQuadrada::testeSassenfeld() const {
+	std::vector<double> beta;
+	double aux=0;
+	for (unsigned i = 1; i < tamanho; ++i)
+		aux+=eu(0,i)/eu(0,0);
+	if (aux >= 1) return 0;
+	beta.push_back(aux);
+
+	for (unsigned i = 1; i < tamanho; ++i)
+	{
+		aux=0;
+		for (unsigned j = 0; j < tamanho; ++j)
+			if (j!=i) aux += eu(i,j) * beta[j]/eu(i,i);
+		if (aux >= 1) return i;
+		beta.push_back(aux);
+	}
+
+	return -1;
+}
+
 std::string MatrizQuadrada::toString() const {
 	std::string output,aux;
 	for (unsigned i = 0; i < tamanho; ++i)

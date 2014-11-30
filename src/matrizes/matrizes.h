@@ -34,7 +34,8 @@ namespace tnw
 		unsigned getTamanho() const;
 
 		std::tuple<MatrizQuadrada,MatrizQuadrada> DR() const;
-		MatrizQuadrada inversa() const;
+		int testeLinhas() const;
+		int testeSassenfeld() const;
 
 		std::string toString() const;
 
