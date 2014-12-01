@@ -74,7 +74,7 @@ std::string MatrizQuadrada::toString() const {
 	std::string output,aux;
 	for (unsigned i = 0; i < tamanho; ++i)
 	{
-		output += "| ";
+		output += "[ ";
 		for (unsigned j = 0; j < tamanho; ++j)
 		{
 			aux = std::to_string(eu(i,j));
@@ -82,7 +82,7 @@ std::string MatrizQuadrada::toString() const {
 			if(aux.back() == '.') aux.pop_back();
 			output+= aux + " ";
 		}
-		output += "|\n";
+		output += "]\n";
 	}
 	return output;
 }

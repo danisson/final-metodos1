@@ -23,12 +23,12 @@ std::string tnw::Vetor::toString() const {
 	std::string output,aux;
 	for (unsigned i = 0; i < tamanho; ++i)
 	{
-		output += "| ";
+		output += "[ ";
 		aux = std::to_string(v[i]);
 		aux.erase(aux.find_last_not_of('0') + 1, std::string::npos);
 		if(aux.back() == '.') aux.pop_back();
 		output+= aux + " ";
-		output += "|\n";
+		output += "]\n";
 	}
 	return output;
 }

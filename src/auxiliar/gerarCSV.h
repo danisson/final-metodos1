@@ -5,11 +5,14 @@
 #include <string>
 #include <vector>
 
-using std::vector;
 using std::string;
 
 namespace tnw
 {
-	void gerarCSV(vector<MatrizQuadrada> ml,vector<Vetor> bl,double epsilon, string nomeArquivo);
+	void gerarCSV(Vetor m, string nomeArquivo);
+	void gerarCSV(MatrizQuadrada m, string nomeArquivo);
+
+	void gerarJSON(Vetor m, string nomeArquivo);
+	void gerarJSON(MatrizQuadrada m, string nomeArquivo);
 }
 #endif
