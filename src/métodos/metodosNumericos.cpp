@@ -29,8 +29,10 @@ Vetor tnw::jacobi(const MatrizQuadrada &a, const Vetor &b, double epsilon){
 
 		t1 = get_timestamp();
 		secs = (t1 - t0) / 1000000.0L;
-		if (secs > kTempoLimite)
-			printf("err: Tempo Limite Excedido\n");break;
+		if (secs > kTempoLimite) {
+			printf("err: Tempo Limite Excedido\n");
+			break;
+		}
 	}
 
 	return xAtual;
@@ -64,8 +66,10 @@ Vetor tnw::seidel(const MatrizQuadrada &a, const Vetor &b, double epsilon){
 		
 		t1 = get_timestamp();
 		secs = (t1 - t0) / 1000000.0L;
-		if (secs > kTempoLimite)
-			printf("err: Tempo Limite Excedido\n");break;
+		if (secs > kTempoLimite) {
+			printf("err: Tempo Limite Excedido\n");
+			break;
+		}
 	}
 
 	return xAtual;
